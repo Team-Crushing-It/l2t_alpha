@@ -1,31 +1,33 @@
-// import 'package:flutter/material.dart';
-// import 'package:l2t_alpha/authentication/authentication.dart';
-// import 'package:flow_builder/flow_builder.dart';
-// import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter/material.dart';
+import 'package:l2t_alpha/authentication/authentication.dart';
+import 'package:flow_builder/flow_builder.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:l2t_alpha/login/view/login_page.dart';
+import 'package:l2t_alpha/counter/counter.dart';
 
-// class LoginFlow extends StatelessWidget {
-//   static Route<AuthenticationState> route() {
-//     return MaterialPageRoute(
-//       builder: (_) => LoginFlow(),
-//     );
-//   }
+class LoginFlow extends StatelessWidget {
+  static Route<AuthenticationState> route() {
+    return MaterialPageRoute(
+      builder: (_) => LoginFlow(),
+    );
+  }
 
-//   @override
-//   Widget build(BuildContext context) {
-//     return FlowBuilder<AuthenticationState>(
-//       state: context.select((AuthenticationBloc bloc) => bloc.state),
-//       onGeneratePages: (AuthenticationState state, List<Page> pages) {
-//         switch (state) {
-//           // case AuthenticationState.authenticated:
-//           //   return [HomePageAuth.page()];
-//           case AuthenticationStatus.unauthenticated:
-//           default:
-//             return [SplashPage.page()];
-//         }
-//       },
-//     );
-//   }
-// }
+  @override
+  Widget build(BuildContext context) {
+    return FlowBuilder<AuthenticationState>(
+      state: context.select((AuthenticationBloc bloc) => bloc.state),
+      onGeneratePages: (AuthenticationState state, List<Page> pages) {
+        switch (state.status) {
+          case AuthenticationStatus.authenticated:
+            return [CounterPage.page()];
+          case AuthenticationStatus.unauthenticated:
+          default:
+            return [LoginPage.page()];
+        }
+      },
+    );
+  }
+}
 
 // class SplashPage extends StatelessWidget {
 //   static Page page() => MaterialPage<void>(child: SplashPage());
@@ -53,7 +55,7 @@
 //             ElevatedButton(
 //               child: const Text('Sign In'),
 //               onPressed: () {
-//                 context.read<AuthenticationCubit>().login();
+//                 context.read<AuthenticationBloc>().add(Login)
 //               },
 //             ),
 //           ],
