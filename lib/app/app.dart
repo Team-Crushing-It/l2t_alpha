@@ -11,13 +11,37 @@ import 'package:l2t_alpha/l10n/l10n.dart';
 import 'package:flow_builder/flow_builder.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:l2t_alpha/authentication/cubit/authentication_cubit.dart';
+import 'package:l2t_alpha/authentication/authentication.dart';
+
+import 'package:authentication_repository/authentication_repository.dart';
+
 import 'package:l2t_alpha/homepage_auth/homepage_auth.dart';
 import 'package:l2t_alpha/homepage_unauth/homepage_unauth.dart';
 
 class App extends StatelessWidget {
-  const App({Key? key}) : super(key: key);
+  const App({
+    Key? key,
+    required this.authenticationRepository,
+  })   : assert(authenticationRepository != null),
+        super(key: key);
 
+  final AuthenticationRepository authenticationRepository;
+
+  @override
+  Widget build(BuildContext context) {
+    return RepositoryProvider.value(
+      value: authenticationRepository,
+      child: BlocProvider(
+        create: (_) => AuthenticationBloc(
+          authenticationRepository: authenticationRepository,
+        ),
+        child: AppView(),
+      ),
+    );
+  }
+}
+
+class AppView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -30,27 +54,19 @@ class App extends StatelessWidget {
         GlobalMaterialLocalizations.delegate,
       ],
       supportedLocales: AppLocalizations.supportedLocales,
-      home: BlocProvider(
-        create: (context) => AuthenticationCubit(),
-        child: AppView(),
-      ),
-    );
-  }
-}
-
-class AppView extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return FlowBuilder<AuthenticationState>(
-      state: context.select((AuthenticationCubit cubit) => cubit.state),
-      onGeneratePages: (AuthenticationState state, List<Page> pages) {
-        switch (state) {
-          case AuthenticationState.authenticated:
-            return [HomePageAuth.page()];
-          case AuthenticationState.unauthenticated:
-          default:
-            return [HomePageUnAuth.page()];
-        }
+      builder: (context, child) {
+        return FlowBuilder<AuthenticationState>(
+          state: context.select((AuthenticationBloc cubit) => cubit.state),
+          onGeneratePages: (AuthenticationState state, List<Page> pages) {
+            switch (state.status) {
+              case AuthenticationStatus.authenticated:
+                return [HomePageAuth.page()];
+              case AuthenticationStatus.unauthenticated:
+              default:
+                return [HomePageUnAuth.page()];
+            }
+          },
+        );
       },
     );
   }
