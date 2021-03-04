@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:l2t_alpha/authentication/authentication.dart';
+import 'package:l2t_alpha/login_flow/login_flow.dart';
 
 class NavBar extends StatelessWidget implements PreferredSizeWidget {
   Size get preferredSize => const Size.fromHeight(50);
@@ -34,15 +35,15 @@ class NavBar extends StatelessWidget implements PreferredSizeWidget {
                         style: (TextStyle(color: Colors.white))),
                     onPressed: () async {
                       // await Navigator.of(context).push<AuthenticationState>(
-                      //   AuthenticationFlow.route(),
+                      //   LoginFlow.route(),
                       // );
-                      // ScaffoldMessenger.of(context)
-                      //   ..hideCurrentSnackBar()
-                      //   ..showSnackBar(
-                      //     const SnackBar(
-                      //       content: Text('Authentication Flow Complete!'),
-                      //     ),
-                      //   );
+                      ScaffoldMessenger.of(context)
+                        ..hideCurrentSnackBar()
+                        ..showSnackBar(
+                          const SnackBar(
+                            content: Text('Login Flow Complete!'),
+                          ),
+                        );
                     },
                   ),
                 ),

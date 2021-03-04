@@ -9,9 +9,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:l2t_alpha/counter/counter.dart';
 import 'package:l2t_alpha/l10n/l10n.dart';
+import 'package:l2t_alpha/navbar/navbar.dart';
 
 class CounterPage extends StatelessWidget {
   const CounterPage({Key? key}) : super(key: key);
+  static Page page() => const MaterialPage<void>(child: CounterPage());
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +29,7 @@ class CounterView extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = context.l10n;
     return Scaffold(
-      appBar: AppBar(title: Text(l10n.counterAppBarTitle)),
+      appBar: NavBar(),
       body: const Center(child: CounterText()),
       floatingActionButton: Column(
         mainAxisAlignment: MainAxisAlignment.end,
