@@ -22,8 +22,7 @@ class App extends StatelessWidget {
   const App({
     Key? key,
     required this.authenticationRepository,
-  })   : assert(authenticationRepository != null),
-        super(key: key);
+  }) : super(key: key);
 
   final AuthenticationRepository authenticationRepository;
 
@@ -57,7 +56,7 @@ class AppView extends StatelessWidget {
       supportedLocales: AppLocalizations.supportedLocales,
       builder: (context, child) {
         return FlowBuilder<AuthenticationState>(
-          state: context.select((AuthenticationBloc cubit) => cubit.state),
+          state: context.select((AuthenticationBloc bloc) => bloc.state),
           onGeneratePages: (AuthenticationState state, List<Page> pages) {
             switch (state.status) {
               case AuthenticationStatus.authenticated:
