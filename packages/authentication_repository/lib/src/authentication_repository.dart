@@ -102,7 +102,7 @@ class AuthenticationRepository {
     try {
       await Future.wait([
         _firebaseAuth.signOut(),
-        _googleSignIn.signOut(),
+        // _googleSignIn.signOut(),
       ]);
     } on Exception {
       throw LogOutFailure();

@@ -109,8 +109,9 @@ class _LoginButton extends StatelessWidget {
                 color: const Color(0xFFFFD600),
                 onPressed: state.status.isValidated
                     ? () {
-                        context.read<LoginCubit>().logInWithCredentials();
-                        context.flow<AuthenticationState>().complete();
+                        context
+                            .read<LoginCubit>()
+                            .logInWithCredentials(context);
                       }
                     : null,
               );

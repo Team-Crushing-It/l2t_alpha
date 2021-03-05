@@ -1,8 +1,10 @@
 import 'package:authentication_repository/authentication_repository.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter/material.dart';
 import 'package:l2t_alpha/authentication/authentication.dart';
 import 'package:formz/formz.dart';
+import 'package:flow_builder/flow_builder.dart';
 
 part 'login_state.dart';
 
@@ -29,7 +31,7 @@ class LoginCubit extends Cubit<LoginState> {
     ));
   }
 
-  Future<void> logInWithCredentials() async {
+  Future<void> logInWithCredentials(BuildContext context) async {
     if (!state.status.isValidated) return;
     emit(state.copyWith(status: FormzStatus.submissionInProgress));
     try {
@@ -38,6 +40,7 @@ class LoginCubit extends Cubit<LoginState> {
         password: state.password.value,
       );
       emit(state.copyWith(status: FormzStatus.submissionSuccess));
+      context.flow<LoginState>().complete();
     } on Exception {
       emit(state.copyWith(status: FormzStatus.submissionFailure));
     }

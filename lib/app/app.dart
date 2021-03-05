@@ -17,6 +17,7 @@ import 'package:authentication_repository/authentication_repository.dart';
 
 import 'package:l2t_alpha/homepage_auth/homepage_auth.dart';
 import 'package:l2t_alpha/homepage_unauth/homepage_unauth.dart';
+import 'package:l2t_alpha/counter/counter.dart';
 
 class App extends StatelessWidget {
   const App({
@@ -60,7 +61,7 @@ class AppView extends StatelessWidget {
           onGeneratePages: (AuthenticationState state, List<Page> pages) {
             switch (state.status) {
               case AuthenticationStatus.authenticated:
-                return [HomePageAuth.page()];
+                return [CounterPage.page()];
               case AuthenticationStatus.unauthenticated:
               default:
                 return [HomePageUnAuth.page()];

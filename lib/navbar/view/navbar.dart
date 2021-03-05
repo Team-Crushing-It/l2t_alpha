@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:l2t_alpha/authentication/authentication.dart';
+import 'package:l2t_alpha/login/login.dart';
 import 'package:l2t_alpha/login_flow/login_flow.dart';
 
 class NavBar extends StatelessWidget implements PreferredSizeWidget {
@@ -11,6 +12,7 @@ class NavBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<AuthenticationBloc, AuthenticationState>(
       builder: (context, state) =>
+          // Authenticated Navbar ==============================
           state.status == AuthenticationStatus.authenticated
               ? AppBar(
                   title: const Text('Auth'),
@@ -24,6 +26,7 @@ class NavBar extends StatelessWidget implements PreferredSizeWidget {
                     )
                   ],
                 )
+              // UnAuthenticaed NavBar ====================================
               : AppBar(
                   title: const Text('UnAuth'),
                   actions: [
@@ -33,7 +36,7 @@ class NavBar extends StatelessWidget implements PreferredSizeWidget {
                         child: const Text('Sign-up',
                             style: (TextStyle(color: Colors.white))),
                         onPressed: () async {
-                          await Navigator.of(context).push<AuthenticationState>(
+                          await Navigator.of(context).push<LoginState>(
                             LoginFlow.route(),
                           );
                           ScaffoldMessenger.of(context)
@@ -52,7 +55,7 @@ class NavBar extends StatelessWidget implements PreferredSizeWidget {
                         child: const Text('Login',
                             style: (TextStyle(color: Colors.white))),
                         onPressed: () async {
-                          await Navigator.of(context).push<AuthenticationState>(
+                          await Navigator.of(context).push<LoginState>(
                             LoginFlow.route(),
                           );
                           ScaffoldMessenger.of(context)
