@@ -4,6 +4,8 @@ import 'package:l2t_alpha/login/login.dart';
 import 'package:l2t_alpha/sign_up/sign_up.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:formz/formz.dart';
+import 'package:flow_builder/flow_builder.dart';
+import 'package:l2t_alpha/authentication/authentication.dart';
 
 class LoginForm extends StatelessWidget {
   @override
@@ -106,7 +108,10 @@ class _LoginButton extends StatelessWidget {
                 ),
                 color: const Color(0xFFFFD600),
                 onPressed: state.status.isValidated
-                    ? () => context.read<LoginCubit>().logInWithCredentials()
+                    ? () {
+                        context.read<LoginCubit>().logInWithCredentials();
+                        context.flow<AuthenticationState>().complete();
+                      }
                     : null,
               );
       },
