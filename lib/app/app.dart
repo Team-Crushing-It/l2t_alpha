@@ -6,8 +6,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:authentication_repository/authentication_repository.dart';
 import 'package:l2t_alpha/authentication/authentication.dart';
-import 'package:l2t_alpha/homepage_unauth/homepage_unauth.dart';
-import 'package:l2t_alpha/counter/counter.dart';
+import 'package:l2t_alpha/navigation/cubit/navigation_cubit.dart';
+
+import 'package:l2t_alpha/home/home.dart';
+import 'package:l2t_alpha/page1/page1.dart';
+import 'package:l2t_alpha/page2/page2.dart';
 
 class App extends StatelessWidget {
   const App({
@@ -21,10 +24,17 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return RepositoryProvider.value(
       value: authenticationRepository,
-      child: BlocProvider(
-        create: (_) => AuthenticationBloc(
-          authenticationRepository: authenticationRepository,
-        ),
+      child: MultiBlocProvider(
+        providers: [
+          BlocProvider(
+            create: (_) => AuthenticationBloc(
+              authenticationRepository: authenticationRepository,
+            ),
+          ),
+          BlocProvider(
+            create: (_) => NavigationCubit(),
+          )
+        ],
         child: AppView(),
       ),
     );
@@ -46,15 +56,18 @@ class AppView extends StatelessWidget {
       ],
       supportedLocales: AppLocalizations.supportedLocales,
       builder: (context, child) {
-        return FlowBuilder<AuthenticationState>(
-          state: context.select((AuthenticationBloc bloc) => bloc.state),
-          onGeneratePages: (AuthenticationState state, List<Page> pages) {
-            switch (state.status) {
-              case AuthenticationStatus.authenticated:
-                return [CounterPage.page()];
-              case AuthenticationStatus.unauthenticated:
+        return FlowBuilder<NavigationState>(
+          state: context.select((NavigationCubit cubit) => cubit.state),
+          onGeneratePages: (NavigationState state, List<Page> pages) {
+            switch (state) {
+              case NavigationState.home:
+                return [Home.page()];
+              case NavigationState.page1:
+                return [Page1.page()];
+              case NavigationState.page2:
+                return [Page2.page()];
               default:
-                return [HomePageUnAuth.page()];
+                return [Home.page()];
             }
           },
         );

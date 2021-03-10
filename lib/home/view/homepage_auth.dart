@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:l2t_alpha/navbar/navbar.dart';
+import 'package:l2t_alpha/navigation/navbar/navbar.dart';
 
 class HomePageAuth extends StatelessWidget {
   static Page page() => MaterialPage<void>(child: HomePageAuth());
