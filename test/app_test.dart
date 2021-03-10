@@ -9,13 +9,14 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:l2t_alpha/app/app.dart';
 import 'package:l2t_alpha/counter/counter.dart';
 import 'package:authentication_repository/authentication_repository.dart';
+import 'package:l2t_alpha/home/home.dart';
 
 void main() {
   group('App', () {
     testWidgets('renders CounterPage', (tester) async {
       await tester.pumpWidget(
           App(authenticationRepository: AuthenticationRepository()));
-      expect(find.byType(CounterPage), findsOneWidget);
+      expect(find.byType(HomePageUnAuth), findsOneWidget);
     });
   });
 }

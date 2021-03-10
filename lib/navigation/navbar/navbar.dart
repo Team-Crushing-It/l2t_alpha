@@ -129,7 +129,18 @@ class _NavBarViewState extends State<NavBarView> {
                 child: OutlinedButton(
                   child: const Text('Login',
                       style: (TextStyle(color: Colors.white))),
-                  onPressed: () {},
+                  onPressed: () async {
+                    await Navigator.of(context).push<LoginState>(
+                      LoginFlow.route(),
+                    );
+                    ScaffoldMessenger.of(context)
+                      ..hideCurrentSnackBar()
+                      ..showSnackBar(
+                        const SnackBar(
+                          content: Text('Login Flow Complete!'),
+                        ),
+                      );
+                  },
                 ),
               ),
             ],
