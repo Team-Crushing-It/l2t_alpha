@@ -71,33 +71,5 @@ class NavBar extends StatelessWidget implements PreferredSizeWidget {
                   ],
                 ),
     );
-
-    // AppBar(
-    //   title: BlocBuilder<AuthenticationCubit, AuthenticationState>(
-    //     builder: (context, state) => state == AuthenticationState.authenticated
-    //         ? Text('Auth')
-    //         : Text('Unauth'),
-    //   ),
-    //   actions: [
-    //     Padding(
-    //       padding: const EdgeInsets.all(8.0),
-    //       child: OutlinedButton(
-    //         child: Text('Login', style: (TextStyle(color: Colors.white))),
-    //         onPressed: () async {
-    //           await Navigator.of(context).push<AuthenticationState>(
-    //             AuthenticationFlow.route(),
-    //           );
-    //           ScaffoldMessenger.of(context)
-    //             ..hideCurrentSnackBar()
-    //             ..showSnackBar(
-    //               const SnackBar(
-    //                 content: Text('Authentication Flow Complete!'),
-    //               ),
-    //             );
-    //         },
-    //       ),
-    //     ),
-    //   ],
-    // );
   }
 }

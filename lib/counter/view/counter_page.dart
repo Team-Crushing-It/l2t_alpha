@@ -8,7 +8,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:l2t_alpha/counter/counter.dart';
-import 'package:l2t_alpha/l10n/l10n.dart';
 import 'package:l2t_alpha/navbar/navbar.dart';
 
 class CounterPage extends StatelessWidget {
@@ -27,7 +26,6 @@ class CounterPage extends StatelessWidget {
 class CounterView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final l10n = context.l10n;
     return Scaffold(
       appBar: NavBar(),
       body: const Center(child: CounterText()),

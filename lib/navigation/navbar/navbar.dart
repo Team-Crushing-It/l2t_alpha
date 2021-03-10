@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:l2t_alpha/authentication/authentication.dart';
 import 'package:l2t_alpha/login/login.dart';
+import 'package:l2t_alpha/login_flow/login_flow.dart';
 
 import '../cubit/navigation_cubit.dart';
-import 'package:l2t_alpha/login_flow/login_flow.dart';
 
 class NavBar extends StatelessWidget implements PreferredSizeWidget {
   @override

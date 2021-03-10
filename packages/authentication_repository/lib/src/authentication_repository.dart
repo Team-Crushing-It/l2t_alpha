@@ -48,7 +48,6 @@ class AuthenticationRepository {
     required String email,
     required String password,
   }) async {
-    assert(email != null && password != null);
     try {
       await _firebaseAuth.createUserWithEmailAndPassword(
         email: email,
@@ -83,7 +82,6 @@ class AuthenticationRepository {
     required String email,
     required String password,
   }) async {
-    assert(email != null && password != null);
     try {
       await _firebaseAuth.signInWithEmailAndPassword(
         email: email,
