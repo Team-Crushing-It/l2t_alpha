@@ -48,7 +48,7 @@ class _NavBarViewState extends State<NavBarView> {
                 },
               ),
               IconButton(
-                color: widget.stateNav == NavigationState.page1
+                color: widget.stateNav == NavigationState.learn
                     ? Colors.red
                     : Colors.black,
                 icon: const Icon(Icons.access_alarm_outlined),
@@ -76,35 +76,39 @@ class _NavBarViewState extends State<NavBarView> {
           )
         // UnAuthenticaed NavBar ====================================
         : AppBar(
-            title: const Text('UnAuth'),
+            leading: Image.asset('L2TnoBG.png'),
+            title: Row(
+              children: [
+                IconButton(
+                  color: widget.stateNav == NavigationState.home
+                      ? Colors.red
+                      : Colors.black,
+                  icon: const Icon(Icons.home_outlined),
+                  onPressed: () => {
+                    context.read<NavigationCubit>().home(),
+                  },
+                ),
+                IconButton(
+                  color: widget.stateNav == NavigationState.learn
+                      ? Colors.red
+                      : Colors.black,
+                  icon: const Icon(Icons.school),
+                  onPressed: () => {
+                    context.read<NavigationCubit>().page1(),
+                  },
+                ),
+                IconButton(
+                  color: widget.stateNav == NavigationState.page2
+                      ? Colors.red
+                      : Colors.black,
+                  icon: const Icon(Icons.ac_unit_outlined),
+                  onPressed: () => {
+                    context.read<NavigationCubit>().page2(),
+                  },
+                ),
+              ],
+            ),
             actions: [
-              IconButton(
-                color: widget.stateNav == NavigationState.home
-                    ? Colors.red
-                    : Colors.black,
-                icon: const Icon(Icons.home_outlined),
-                onPressed: () => {
-                  context.read<NavigationCubit>().home(),
-                },
-              ),
-              IconButton(
-                color: widget.stateNav == NavigationState.page1
-                    ? Colors.red
-                    : Colors.black,
-                icon: const Icon(Icons.access_alarm_outlined),
-                onPressed: () => {
-                  context.read<NavigationCubit>().page1(),
-                },
-              ),
-              IconButton(
-                color: widget.stateNav == NavigationState.page2
-                    ? Colors.red
-                    : Colors.black,
-                icon: const Icon(Icons.ac_unit_outlined),
-                onPressed: () => {
-                  context.read<NavigationCubit>().page2(),
-                },
-              ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: OutlinedButton(

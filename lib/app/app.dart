@@ -9,7 +9,7 @@ import 'package:l2t_alpha/authentication/authentication.dart';
 import 'package:l2t_alpha/navigation/cubit/navigation_cubit.dart';
 
 import 'package:l2t_alpha/home/home.dart';
-import 'package:l2t_alpha/page1/page1.dart';
+import 'package:l2t_alpha/learn/learn.dart';
 import 'package:l2t_alpha/page2/page2.dart';
 
 class App extends StatelessWidget {
@@ -62,8 +62,8 @@ class AppView extends StatelessWidget {
             switch (state) {
               case NavigationState.home:
                 return [Home.page()];
-              case NavigationState.page1:
-                return [Page1.page()];
+              case NavigationState.learn:
+                return [Learn.page()];
               case NavigationState.page2:
                 return [Page2.page()];
               default:

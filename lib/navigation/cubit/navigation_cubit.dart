@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 
-enum NavigationState { home, page1, page2, page3 }
+enum NavigationState { home, learn, page2, page3 }
 
 class NavigationCubit extends Cubit<NavigationState> {
   NavigationCubit() : super(NavigationState.home);
@@ -10,7 +10,7 @@ class NavigationCubit extends Cubit<NavigationState> {
   }
 
   void page1() {
-    emit(NavigationState.page1);
+    emit(NavigationState.learn);
   }
 
   void page2() {
