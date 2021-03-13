@@ -66,11 +66,18 @@ class _HoverLogoState extends State<HoverLogo> {
         }
         ;
       },
-      child: AnimatedSwitcher(
-          duration: const Duration(milliseconds: 200),
-          child: isHovering
-              ? L2TLogo(position: widget.position)
-              : Image.asset('hoverLogo/black.png')),
+      child: Stack(
+        children: [
+          L2TLogo(position: widget.position),
+          Visibility(
+            visible: widget.visible,
+            child: AnimatedOpacity(
+                opacity: !isHovering ? 1.0 : 0.0,
+                duration: const Duration(milliseconds: 200),
+                child: Image.asset('hoverLogo/black.png')),
+          ),
+        ],
+      ),
     );
   }
 }
