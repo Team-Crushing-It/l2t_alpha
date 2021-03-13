@@ -38,6 +38,7 @@ void onPressed() {
 
 class _NavBarViewState extends State<NavBarView> {
   bool isHovering = false;
+  int position = 0;
   @override
   Widget build(BuildContext context) {
     return widget.statusAuth == AuthenticationStatus.authenticated
@@ -85,9 +86,11 @@ class _NavBarViewState extends State<NavBarView> {
             title: Row(
               children: [
                 HoverLogo(
-                    onTap: () => context.read<NavigationCubit>().home(),
-                    visible:
-                        widget.stateNav == NavigationState.home ? false : true),
+                  onTap: () => context.read<NavigationCubit>().home(),
+                  visible:
+                      widget.stateNav == NavigationState.home ? false : true,
+                  position: position,
+                ),
                 IconButton(
                   color: widget.stateNav == NavigationState.learn
                       ? Colors.red

@@ -2,11 +2,16 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 
 class HoverLogo extends StatefulWidget {
-  const HoverLogo({Key? key, required this.onTap, required this.visible})
+  HoverLogo(
+      {Key? key,
+      required this.onTap,
+      required this.visible,
+      required this.position})
       : super(key: key);
 
   final VoidCallback onTap;
   final bool visible;
+  int position;
 
   @override
   _HoverLogoState createState() => _HoverLogoState();
@@ -15,17 +20,16 @@ class HoverLogo extends StatefulWidget {
 class _HoverLogoState extends State<HoverLogo> {
   late Timer tick;
   bool isHovering = false;
-  var position = 0;
 
   void startAnimate() {
     tick = Timer.periodic(
       const Duration(milliseconds: 500),
       (timer) {
         setState(() {
-          if (position < 6) {
-            position++;
+          if (widget.position < 6) {
+            widget.position++;
           } else {
-            position = 0;
+            widget.position = 0;
           }
         });
       },
@@ -62,18 +66,11 @@ class _HoverLogoState extends State<HoverLogo> {
         }
         ;
       },
-      child: Stack(
-        children: [
-          L2TLogo(position: position),
-          Visibility(
-            visible: widget.visible,
-            child: AnimatedOpacity(
-                opacity: !isHovering ? 1.0 : 0.0,
-                duration: const Duration(milliseconds: 200),
-                child: Image.asset('hoverLogo/black.png')),
-          ),
-        ],
-      ),
+      child: AnimatedSwitcher(
+          duration: const Duration(milliseconds: 200),
+          child: isHovering
+              ? L2TLogo(position: widget.position)
+              : Image.asset('hoverLogo/black.png')),
     );
   }
 }
