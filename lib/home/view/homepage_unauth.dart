@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:l2t_alpha/navigation/navbar/navbar.dart';
-import 'package:l2t_alpha/counter/counter.dart';
 
 class HomePageUnAuth extends StatelessWidget {
   static Page page() => MaterialPage<void>(child: HomePageUnAuth());
@@ -9,7 +8,12 @@ class HomePageUnAuth extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: NavBar(),
-      body: const CounterPage(),
+      body: const Center(
+        child: Text(
+          'HOMEPAGE!!!',
+          style: TextStyle(fontSize: 100, color: Colors.blueGrey),
+        ),
+      ),
     );
   }
 }

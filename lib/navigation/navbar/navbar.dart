@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:l2t_alpha/authentication/authentication.dart';
 import 'package:l2t_alpha/login/login.dart';
 import 'package:l2t_alpha/login_flow/login_flow.dart';
+import './hoverLogo.dart';
 
 import '../cubit/navigation_cubit.dart';
 
@@ -31,7 +32,12 @@ class NavBarView extends StatefulWidget {
   _NavBarViewState createState() => _NavBarViewState();
 }
 
+void onPressed() {
+  print('pressed');
+}
+
 class _NavBarViewState extends State<NavBarView> {
+  bool isHovering = false;
   @override
   Widget build(BuildContext context) {
     return widget.statusAuth == AuthenticationStatus.authenticated
@@ -76,18 +82,12 @@ class _NavBarViewState extends State<NavBarView> {
           )
         // UnAuthenticaed NavBar ====================================
         : AppBar(
-            leading: Image.asset('L2TnoBG.png'),
             title: Row(
               children: [
-                IconButton(
-                  color: widget.stateNav == NavigationState.home
-                      ? Colors.red
-                      : Colors.black,
-                  icon: const Icon(Icons.home_outlined),
-                  onPressed: () => {
-                    context.read<NavigationCubit>().home(),
-                  },
-                ),
+                HoverLogo(
+                    onTap: () => context.read<NavigationCubit>().home(),
+                    visible:
+                        widget.stateNav == NavigationState.home ? false : true),
                 IconButton(
                   color: widget.stateNav == NavigationState.learn
                       ? Colors.red
