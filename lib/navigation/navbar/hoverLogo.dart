@@ -1,17 +1,16 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'dart:math';
 
 class HoverLogo extends StatefulWidget {
-  HoverLogo(
-      {Key? key,
-      required this.onTap,
-      required this.visible,
-      required this.position})
-      : super(key: key);
+  HoverLogo({
+    Key? key,
+    required this.onTap,
+    required this.visible,
+  }) : super(key: key);
 
   final VoidCallback onTap;
   final bool visible;
-  int position;
 
   @override
   _HoverLogoState createState() => _HoverLogoState();
@@ -20,16 +19,20 @@ class HoverLogo extends StatefulWidget {
 class _HoverLogoState extends State<HoverLogo> {
   late Timer tick;
   bool isHovering = false;
+  Image? imageBlk;
+  var position = 0;
+  var finalPosition = Random();
 
   void startAnimate() {
     tick = Timer.periodic(
       const Duration(milliseconds: 500),
       (timer) {
+        print(position);
         setState(() {
-          if (widget.position < 6) {
-            widget.position++;
+          if (position < 6) {
+            position++;
           } else {
-            widget.position = 0;
+            position = 0;
           }
         });
       },
@@ -41,9 +44,24 @@ class _HoverLogoState extends State<HoverLogo> {
   }
 
   @override
+  void initState() {
+    super.initState();
+
+    imageBlk = Image.asset('assets/hoverLogo/black.png');
+  }
+
+  @override
   void dispose() {
     tick.cancel();
     super.dispose();
+  }
+
+  // Caching the image
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+
+    precacheImage(imageBlk!.image, context);
   }
 
   @override
@@ -54,6 +72,7 @@ class _HoverLogoState extends State<HoverLogo> {
       hoverColor: Colors.transparent,
       onTap: () => widget.onTap(),
       onHover: (hovering) {
+        // If NOT on homepage, run the hover trick. Else, ignore.
         if (widget.visible) {
           setState(() {
             isHovering = hovering;
@@ -64,20 +83,17 @@ class _HoverLogoState extends State<HoverLogo> {
             stopAnimate();
           }
         }
-        ;
       },
-      child: Stack(
-        children: [
-          L2TLogo(position: widget.position),
-          Visibility(
-            visible: widget.visible,
-            child: AnimatedOpacity(
-                opacity: !isHovering ? 1.0 : 0.0,
-                duration: const Duration(milliseconds: 200),
-                child: Image.asset('hoverLogo/black.png')),
-          ),
-        ],
-      ),
+      child: AnimatedSwitcher(
+          duration: const Duration(milliseconds: 200),
+          // If NOT on the home page, then do hover check
+          child: widget.visible
+              //if hovering, do the animated logo else show just black
+              ? isHovering
+                  ? L2TLogo(position: position)
+                  : Container(width: 72, child: imageBlk)
+              // If home page, display L2T Logo at position
+              : L2TLogo(position: finalPosition.nextInt(6))),
     );
   }
 }
@@ -85,7 +101,7 @@ class _HoverLogoState extends State<HoverLogo> {
 class L2TLogo extends StatefulWidget {
   const L2TLogo({Key? key, required this.position}) : super(key: key);
 
-  final int position;
+  final int? position;
   @override
   _L2TLogoState createState() => _L2TLogoState();
 }
@@ -138,9 +154,12 @@ class _L2TLogoState extends State<L2TLogo> {
 
   @override
   Widget build(BuildContext context) {
-    return AnimatedSwitcher(
-      duration: const Duration(milliseconds: 500),
-      child: images[widget.position],
+    return Container(
+      width: 72,
+      child: AnimatedSwitcher(
+        duration: const Duration(milliseconds: 500),
+        child: images[widget.position],
+      ),
     );
   }
 }

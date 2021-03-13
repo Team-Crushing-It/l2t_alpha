@@ -3,8 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:l2t_alpha/authentication/authentication.dart';
 import 'package:l2t_alpha/login/login.dart';
 import 'package:l2t_alpha/login_flow/login_flow.dart';
-import './hoverLogo.dart';
 
+import './hoverLogo.dart';
 import '../cubit/navigation_cubit.dart';
 
 class NavBar extends StatelessWidget implements PreferredSizeWidget {
@@ -37,8 +37,6 @@ void onPressed() {
 }
 
 class _NavBarViewState extends State<NavBarView> {
-  bool isHovering = false;
-  int position = 0;
   @override
   Widget build(BuildContext context) {
     return widget.statusAuth == AuthenticationStatus.authenticated
@@ -89,7 +87,6 @@ class _NavBarViewState extends State<NavBarView> {
                   onTap: () => context.read<NavigationCubit>().home(),
                   visible:
                       widget.stateNav == NavigationState.home ? false : true,
-                  position: position,
                 ),
                 IconButton(
                   color: widget.stateNav == NavigationState.learn
