@@ -100,13 +100,13 @@ class _L2TLogoState extends State<L2TLogo> {
   void initState() {
     super.initState();
 
-    image1 = Image.asset('hoverLogo/1.png');
-    image2 = Image.asset('hoverLogo/2.png');
-    image3 = Image.asset('hoverLogo/3.png');
-    image4 = Image.asset('hoverLogo/4.png');
-    image5 = Image.asset('hoverLogo/5.png');
-    image6 = Image.asset('hoverLogo/6.png');
-    image7 = Image.asset('hoverLogo/7.png');
+    image1 = Image.asset('assets/hoverLogo/1.png');
+    image2 = Image.asset('assets/hoverLogo/2.png');
+    image3 = Image.asset('assets/hoverLogo/3.png');
+    image4 = Image.asset('assets/hoverLogo/4.png');
+    image5 = Image.asset('assets/hoverLogo/5.png');
+    image6 = Image.asset('assets/hoverLogo/6.png');
+    image7 = Image.asset('assets/hoverLogo/7.png');
 
     images = [
       image1,
