@@ -17,7 +17,7 @@ class HoverLogo extends StatefulWidget {
 }
 
 class _HoverLogoState extends State<HoverLogo> {
-  late Timer tick;
+  Timer? tick;
   bool isHovering = false;
   Image? imageBlk;
   var position = 0;
@@ -40,7 +40,7 @@ class _HoverLogoState extends State<HoverLogo> {
   }
 
   void stopAnimate() {
-    tick.cancel();
+    tick?.cancel();
   }
 
   @override
@@ -52,7 +52,7 @@ class _HoverLogoState extends State<HoverLogo> {
 
   @override
   void dispose() {
-    tick.cancel();
+    tick?.cancel();
     super.dispose();
   }
 
