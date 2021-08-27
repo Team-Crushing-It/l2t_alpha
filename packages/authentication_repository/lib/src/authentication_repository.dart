@@ -1,9 +1,14 @@
 import 'dart:async';
+import 'package:flutter/material.dart';
 
 import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
+
 import 'package:google_sign_in/google_sign_in.dart';
 
+import 'package:github_sign_in/github_sign_in.dart';
+
 import 'models/models.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
 
 /// Thrown if during the sign up process if a failure occurs.
 class SignUpFailure implements Exception {}
@@ -13,6 +18,9 @@ class LogInWithEmailAndPasswordFailure implements Exception {}
 
 /// Thrown during the sign in with google process if a failure occurs.
 class LogInWithGoogleFailure implements Exception {}
+
+/// Thrown during the sign in if a github failure occurs.
+class LogInWithGithubFailure implements Exception {}
 
 /// Thrown during the logout process if a failure occurs.
 class LogOutFailure implements Exception {}
@@ -25,11 +33,19 @@ class AuthenticationRepository {
   AuthenticationRepository({
     firebase_auth.FirebaseAuth? firebaseAuth,
     GoogleSignIn? googleSignIn,
+    GitHubSignIn? gitHubSignin,
   })  : _firebaseAuth = firebaseAuth ?? firebase_auth.FirebaseAuth.instance,
-        _googleSignIn = googleSignIn ?? GoogleSignIn.standard();
+        _googleSignIn = googleSignIn ?? GoogleSignIn.standard(),
+        _gitHubSignIn = gitHubSignin ??
+            GitHubSignIn(
+                clientId: 'abd975f97f953c6e1843',
+                clientSecret: '709fb6441354c8d148248ae2cab0673b4ce7f1d5',
+                redirectUrl:
+                    'https://l2t-flutter.firebaseapp.com/__/auth/handler');
 
   final firebase_auth.FirebaseAuth _firebaseAuth;
   final GoogleSignIn _googleSignIn;
+  final GitHubSignIn _gitHubSignIn;
 
   /// Stream of [User] which will emit the current user when
   /// the authentication state changes.
@@ -64,6 +80,7 @@ class AuthenticationRepository {
   Future<void> logInWithGoogle() async {
     try {
       final googleUser = await _googleSignIn.signIn();
+
       final googleAuth = await googleUser?.authentication;
       final credential = firebase_auth.GoogleAuthProvider.credential(
         accessToken: googleAuth?.accessToken,
@@ -72,6 +89,22 @@ class AuthenticationRepository {
       await _firebaseAuth.signInWithCredential(credential);
     } on Exception {
       throw LogInWithGoogleFailure();
+    }
+  }
+
+  /// Starts the Sign In with Github
+  ///
+  /// Throws a [LogInWithGithubFailure] if an exception occurs.
+  Future<void> logInWithGitHub() async {
+    try {
+      firebase_auth.UserCredential userCredential;
+
+      var githubProvider = firebase_auth.GithubAuthProvider();
+      userCredential = await _firebaseAuth.signInWithPopup(githubProvider);
+
+      await _firebaseAuth.signInWithCredential(userCredential.credential!);
+    } on Exception {
+      throw LogInWithGithubFailure();
     }
   }
 

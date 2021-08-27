@@ -32,7 +32,9 @@ class App extends StatelessWidget {
             ),
           ),
           BlocProvider(
-            create: (_) => NavigationCubit(),
+            create: (_) => NavigationCubit(
+              AuthenticationRepository(),
+            ),
           )
         ],
         child: AppView(),

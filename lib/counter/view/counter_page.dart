@@ -10,7 +10,7 @@ class CounterPage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: List<Widget>.generate(
-              5, (int index) => _CounterWidget(CounterCubit())),
+              7, (int index) => _CounterWidget(CounterCubit())),
         ),
       ),
     );

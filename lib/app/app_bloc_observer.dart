@@ -16,9 +16,9 @@ class AppBlocObserver extends BlocObserver {
     log('onTransition(${bloc.runtimeType}, $transition)');
   }
 
-  @override
-  void onError(Bloc bloc, Object error, StackTrace stackTrace) {
-    log('onError(${bloc.runtimeType}, $error, $stackTrace)');
-    super.onError(bloc, error, stackTrace);
-  }
+  // @override
+  // void onError(Bloc bloc, Object error, StackTrace stackTrace) {
+  //   log('onError(${bloc.runtimeType}, $error, $stackTrace)');
+  //   super.onError(bloc, error, stackTrace);
+  // }
 }
