@@ -23,6 +23,7 @@ dependencies:
   github_sign_in: 
     git: https://github.com/Gene-Dana/dart-github-sign-in.git
   flutter_signin_button: ^2.0.0
+  google_fonts: ^2.1.0
 
   authentication_repository:
     path: packages/authentication_repository
@@ -38,4 +39,6 @@ flutter:
   uses-material-design: true
   generate: true
   assets:
+    - assets/
     - assets/hoverLogo/
+    

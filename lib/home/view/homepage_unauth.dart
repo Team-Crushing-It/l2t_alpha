@@ -7,6 +7,69 @@ class HomePageUnAuth extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(appBar: NavBar(), body: CounterPage());
+    return Scaffold(
+      appBar: NavBar(),
+      body: Column(
+        children: [
+          const FirstSection(),
+          // const SecondSection(),
+        ],
+      ),
+      extendBodyBehindAppBar: true,
+    );
+  }
+}
+
+class FirstSection extends StatelessWidget {
+  const FirstSection({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      child: Container(
+          height: 1000,
+          color: const Color(0xffF7F9FF),
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              // crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Container(height: 500, child: Image.asset('assets/hero.png')),
+                Text('Learn how to build your vision',
+                    style: Theme.of(context)
+                        .primaryTextTheme
+                        .headline1!
+                        .copyWith(fontSize: 50))
+              ],
+            ),
+          )),
+    );
+  }
+}
+
+class SecondSection extends StatelessWidget {
+  const SecondSection({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      child: Container(
+          height: 1000,
+          // color: const Color(0xffF7F9FF),
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              // crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Container(height: 500, child: Image.asset('assets/hero.png')),
+                Text('Learn how to build your vision',
+                    style: Theme.of(context)
+                        .primaryTextTheme
+                        .headline1!
+                        .copyWith(fontSize: 50))
+              ],
+            ),
+          )),
+    );
   }
 }

@@ -79,6 +79,8 @@ class _NavBarViewState extends State<NavBarView> {
           )
         // UnAuthenticaed NavBar ====================================
         : AppBar(
+            backgroundColor: Colors.transparent,
+            elevation: 0,
             title: Row(
               children: [
                 HoverLogo(
@@ -110,15 +112,19 @@ class _NavBarViewState extends State<NavBarView> {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: OutlinedButton(
-                    child: const Text('Sign-up',
-                        style: (TextStyle(color: Colors.white))),
+                    child: const Text(
+                      'Sign-up',
+                      style: (TextStyle(color: Colors.black)),
+                    ),
                     onPressed: () {}),
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: OutlinedButton(
-                  child: const Text('Login',
-                      style: (TextStyle(color: Colors.white))),
+                  child: const Text(
+                    'Login',
+                    style: (TextStyle(color: Colors.black)),
+                  ),
                   onPressed: () {
                     context.read<NavigationCubit>().logInWithGitHub();
                   },

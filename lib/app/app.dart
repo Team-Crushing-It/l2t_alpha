@@ -3,6 +3,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:l2t_alpha/l10n/l10n.dart';
 import 'package:flow_builder/flow_builder.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import 'package:authentication_repository/authentication_repository.dart';
 import 'package:l2t_alpha/authentication/authentication.dart';
@@ -49,6 +50,11 @@ class AppView extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
+        primaryTextTheme: TextTheme(
+          headline1: TextStyle(
+              fontFamily: GoogleFonts.montserrat().fontFamily,
+              color: Colors.black),
+        ),
         accentColor: const Color(0xFF13B9FF),
         appBarTheme: const AppBarTheme(color: Color(0xFF13B9FF)),
       ),
