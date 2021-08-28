@@ -61,12 +61,19 @@ class SecondSection extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               // crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Container(height: 500, child: Image.asset('assets/hero.png')),
-                Text('Learn how to build your vision',
-                    style: Theme.of(context)
-                        .primaryTextTheme
-                        .headline1!
-                        .copyWith(fontSize: 50))
+                Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Container(child: Image.asset('assets/hero.png')),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 80.0),
+                  child: Text('Learn how to build your vision',
+                      textAlign: TextAlign.center,
+                      style: Theme.of(context)
+                          .primaryTextTheme
+                          .headline1!
+                          .copyWith(fontSize: 50)),
+                )
               ],
             ),
           )),
