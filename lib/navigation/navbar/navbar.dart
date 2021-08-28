@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:l2t_alpha/authentication/authentication.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../cubit/navigation_cubit.dart';
 import './hoverLogo.dart';
@@ -116,7 +117,11 @@ class _NavBarViewState extends State<NavBarView> {
                       'Sign-up',
                       style: (TextStyle(color: Colors.black)),
                     ),
-                    onPressed: () {}),
+                    onPressed: () async => await canLaunch(
+                            'https://5t563f0edni.typeform.com/to/WXMSubwC')
+                        ? await launch(
+                            'https://5t563f0edni.typeform.com/to/WXMSubwC')
+                        : throw 'Could not launch'),
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
