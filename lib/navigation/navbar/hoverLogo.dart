@@ -101,7 +101,7 @@ class _HoverLogoState extends State<HoverLogo> {
 class L2TLogo extends StatefulWidget {
   const L2TLogo({Key? key, required this.position}) : super(key: key);
 
-  final int? position;
+  final int position;
   @override
   _L2TLogoState createState() => _L2TLogoState();
 }
@@ -114,7 +114,7 @@ class _L2TLogoState extends State<L2TLogo> {
   Image? image5;
   Image? image6;
   Image? image7;
-  var images;
+  late List<Image?> images;
 
   @override
   void initState() {
