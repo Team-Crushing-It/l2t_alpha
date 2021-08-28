@@ -88,24 +88,24 @@ class _NavBarViewState extends State<NavBarView> {
                   visible:
                       widget.stateNav == NavigationState.home ? false : true,
                 ),
-                IconButton(
-                  color: widget.stateNav == NavigationState.learn
-                      ? Colors.red
-                      : Colors.black,
-                  icon: const Icon(Icons.school),
-                  onPressed: () => {
-                    context.read<NavigationCubit>().page1(),
-                  },
-                ),
-                IconButton(
-                  color: widget.stateNav == NavigationState.page2
-                      ? Colors.blue
-                      : Colors.black,
-                  icon: const Icon(Icons.ac_unit_outlined),
-                  onPressed: () => {
-                    context.read<NavigationCubit>().page2(),
-                  },
-                ),
+                // IconButton(
+                //   color: widget.stateNav == NavigationState.learn
+                //       ? Colors.red
+                //       : Colors.black,
+                //   icon: const Icon(Icons.school),
+                //   onPressed: () => {
+                //     context.read<NavigationCubit>().page1(),
+                //   },
+                // ),
+                // IconButton(
+                //   color: widget.stateNav == NavigationState.page2
+                //       ? Colors.blue
+                //       : Colors.black,
+                //   icon: const Icon(Icons.ac_unit_outlined),
+                //   onPressed: () => {
+                //     context.read<NavigationCubit>().page2(),
+                //   },
+                // ),
               ],
             ),
             actions: [
