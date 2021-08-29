@@ -34,6 +34,40 @@ class FirstSection extends StatefulWidget {
 
 class _FirstSectionState extends State<FirstSection> {
   int rand = 0;
+  Image? image0;
+  Image? image1;
+  Image? image2;
+  Image? image3;
+  Image? image4;
+  Image? image5;
+  Image? image6;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+
+    image0 = Image.asset("assets/logo/0.png");
+    image1 = Image.asset("assets/logo/1.png");
+    image2 = Image.asset("assets/logo/2.png");
+    image3 = Image.asset("assets/logo/3.png");
+    image4 = Image.asset("assets/logo/4.png");
+    image5 = Image.asset("assets/logo/5.png");
+    image6 = Image.asset("assets/logo/6.png");
+  }
+
+  @override
+  void didChangeDependencies() {
+    // TODO: implement didChangeDependencies
+    super.didChangeDependencies();
+    precacheImage(image0!.image, context);
+    precacheImage(image1!.image, context);
+    precacheImage(image2!.image, context);
+    precacheImage(image3!.image, context);
+    precacheImage(image4!.image, context);
+    precacheImage(image5!.image, context);
+    precacheImage(image6!.image, context);
+    print("prechade went very well");
+  }
 
   @override
   Widget build(BuildContext context) {
