@@ -10,11 +10,8 @@ class Avatar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CircleAvatar(
-      radius: _avatarSize,
-      backgroundImage: photo != null ? NetworkImage(photo) : null,
-      child: photo == null
-          ? const Icon(Icons.person_outline, size: _avatarSize)
-          : null,
-    );
+        radius: _avatarSize,
+        backgroundImage: NetworkImage(photo),
+        child: const Icon(Icons.person_outline, size: _avatarSize));
   }
 }

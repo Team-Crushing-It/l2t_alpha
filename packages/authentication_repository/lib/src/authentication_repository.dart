@@ -1,14 +1,10 @@
 import 'dart:async';
-import 'package:flutter/material.dart';
 
 import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
-
+import 'package:github_sign_in/github_sign_in.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
-import 'package:github_sign_in/github_sign_in.dart';
-
 import 'models/models.dart';
-import 'package:flutter/foundation.dart' show kIsWeb;
 
 /// Thrown if during the sign up process if a failure occurs.
 class SignUpFailure implements Exception {}
@@ -33,19 +29,11 @@ class AuthenticationRepository {
   AuthenticationRepository({
     firebase_auth.FirebaseAuth? firebaseAuth,
     GoogleSignIn? googleSignIn,
-    GitHubSignIn? gitHubSignin,
   })  : _firebaseAuth = firebaseAuth ?? firebase_auth.FirebaseAuth.instance,
-        _googleSignIn = googleSignIn ?? GoogleSignIn.standard(),
-        _gitHubSignIn = gitHubSignin ??
-            GitHubSignIn(
-                clientId: 'abd975f97f953c6e1843',
-                clientSecret: '709fb6441354c8d148248ae2cab0673b4ce7f1d5',
-                redirectUrl:
-                    'https://l2t-flutter.firebaseapp.com/__/auth/handler');
+        _googleSignIn = googleSignIn ?? GoogleSignIn.standard();
 
   final firebase_auth.FirebaseAuth _firebaseAuth;
   final GoogleSignIn _googleSignIn;
-  final GitHubSignIn _gitHubSignIn;
 
   /// Stream of [User] which will emit the current user when
   /// the authentication state changes.
