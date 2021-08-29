@@ -4,7 +4,7 @@ import 'package:l2t_alpha/authentication/authentication.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../cubit/navigation_cubit.dart';
-import './hoverLogo.dart';
+import 'hoverLogo.dart';
 
 class NavBar extends StatelessWidget implements PreferredSizeWidget {
   @override

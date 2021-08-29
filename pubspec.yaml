@@ -17,10 +17,10 @@ dependencies:
   flow_builder: ^0.0.1
   formz: ^0.4.0-nullsafety.0
   font_awesome_flutter: ^9.0.0-nullsafety
-  flutter_markdown: ^0.6.0 
+  flutter_markdown: ^0.6.0
   url_launcher: ^6.0.3
   google_sign_in: ^5.0.1
-  github_sign_in: 
+  github_sign_in:
     git: https://github.com/Gene-Dana/dart-github-sign-in.git
   flutter_signin_button: ^2.0.0
   google_fonts: ^2.1.0
@@ -41,4 +41,4 @@ flutter:
   assets:
     - assets/
     - assets/hoverLogo/
-    
+    - assets/logo/
