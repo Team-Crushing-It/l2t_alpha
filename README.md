@@ -1,18 +1,17 @@
-# L2t Alpha
+# Learn 2 Teach
 
 
 
-<div align = center>
-<img src="assets/readme_assets/L2T_slow.gif" width="" />
-<div> 
-<br>
-<img src="assets/readme_assets/about.png" width="" />
-<br>
-<br>
-<br
-<div align = center>
-<img src="assets/readme_assets/issue.png" width="" />
-<div>
+<img src="assets/readme_assets/L2T_slow.gif"/>
+ 
+
+  
+# ABOUT  OUR PROJECT 
+
+<br/>
+ 
+## THE ISSUE  
+
 <h3>
 True experts are constantly learning, and our product <br/>
   agency found many companies overloaded with work and not <br/>
@@ -24,8 +23,10 @@ True experts are constantly learning, and our product <br/>
 
 </h3>
 <hr>
-<br>
-<img src="assets/readme_assets/solution.png" width="" />
+<br/>
+
+## OUR MAGIC SOLUTION
+
 <h3> 
 Empowering innovation & up-skilling through scalable feature-based <br/>
   delivery • Have a product you want to build? Our experts can build<br/>
@@ -34,8 +35,11 @@ Empowering innovation & up-skilling through scalable feature-based <br/>
   
 </h3>
 <hr>
-<img src="assets/readme_assets/how.png" width="400" />
+<br/>
+
+## HOW IT WORKS
  
+<br/>
 <table>
 <tr>
     <td><img src="assets/readme_assets/number1.png" /></td>
@@ -57,19 +61,19 @@ Empowering innovation & up-skilling through scalable feature-based <br/>
     your needs </p>
      </td>  
    <td><p>As you work with our<br/>
-     team you will be exposed to the<br/>
-     state-of-the-art tools and <br/>
-     approaches for building, delivering,<br/>
-     and maintaining products. </p>
+     team you will be exposed to <br/>
+     the state-of-the-art tools and <br/>
+     approaches for building, <br/>
+     delivering,and maintaining<br/>
+     products. </p>
      </td>  
-   <td><p>Whether you want us to<br/>
-     build your vision, or you want <br/>
-    to learn how to build it yourself,<br/>
-     the first step is to get matched<br/>
-     with a team that best suits <br/>
-     your needs </p>
+   <td><p>Whether you'd like to <br/>
+     continue having your product<br/>
+     built for you, or you'd like <br/>
+     to start building your own, <br/>
+     we can support your next <br/>
+     steps </p>
      </td>
  </tr> 
 
 </table>
-
