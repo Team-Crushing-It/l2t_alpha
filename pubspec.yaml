@@ -42,3 +42,9 @@ flutter:
     - assets/
     - assets/hoverLogo/
     - assets/logo/
+  fonts:
+    - family: Kreon
+      fonts:
+        - asset: fonts/Kreon-Bold.ttf
+          weight: 700
+        - asset: fonts/Kreon-Regular.ttf
