@@ -345,38 +345,3 @@ class WorksSection extends StatelessWidget {
         ));
   }
 }
-// 
-
-// class SecondSection extends StatelessWidget {
-//   const SecondSection({Key? key}) : super(key: key);
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Expanded(
-//       child: Container(
-//           height: 1000,
-//           // color: const Color(0xffF7F9FF),
-//           child: Center(
-//             child: Column(
-//               mainAxisAlignment: MainAxisAlignment.center,
-//               // crossAxisAlignment: CrossAxisAlignment.center,
-//               children: [
-//                 Padding(
-//                   padding: const EdgeInsets.all(16.0),
-//                   child: Container(child: Image.asset('assets/hero.png')),
-//                 ),
-//                 Padding(
-//                   padding: const EdgeInsets.only(top: 80.0),
-//                   child: Text('Learn how to build your vision',
-//                       textAlign: TextAlign.center,
-//                       style: Theme.of(context)
-//                           .primaryTextTheme
-//                           .headline1!
-//                           .copyWith(fontSize: 50)),
-//                 )
-//               ],
-//             ),
-//           )),
-//     );
-//   }
-// }
