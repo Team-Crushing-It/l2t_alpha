@@ -16,7 +16,7 @@ class _HomePageUnAuthState extends State<HomePageUnAuth> {
       appBar: NavBar(),
       body: ListView(
         children: [
-          const HeroSection(),
+          // const HeroSection(),
           const IssueSection(),
           const SolutionSection(),
           const WorksSection()
@@ -82,21 +82,26 @@ class _HeroState extends State<HeroSection> {
               // crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Container(
-                    height: 300,
-                    width: 500,
-                    child: InkWell(
-                        onTap: () {},
-                        onHover: (v) {
-                          setState(() {
-                            rand = Random().nextInt(6);
-                          });
-                        },
-                        child: Image.asset('assets/logo/$rand.png'))),
-                Text('Bring your vision to life',
-                    style: Theme.of(context)
-                        .primaryTextTheme
-                        .headline1!
-                        .copyWith(fontSize: 50))
+                  height: 300,
+                  width: 500,
+                  child: InkWell(
+                    onTap: () {},
+                    onHover: (v) {
+                      setState(() {
+                        rand = Random().nextInt(6);
+                      });
+                    },
+                    child: Image.asset('assets/logo/$rand.png'),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 80.0),
+                  child: Text('Bring your vision to life',
+                      style: Theme.of(context)
+                          .primaryTextTheme
+                          .headline1!
+                          .copyWith(fontSize: 50)),
+                )
               ],
             ),
           )),
@@ -210,136 +215,137 @@ class WorksSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        padding: const EdgeInsets.all(64),
-        child: Column(
-          children: [
-            const Text('HOW IT WORKS',
-                style: TextStyle(
-                    fontFamily: 'Kreon',
-                    fontWeight: FontWeight.bold,
-                    fontSize: 60,
-                    color: Color(0xff000000))),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(50),
-                  child: Column(
-                    children: [
-                      Container(
-                        margin: EdgeInsets.all(20),
-                        height: 140,
-                        width: 140,
-                        decoration: const BoxDecoration(
-                          color: const Color(0xffEF9D13),
-                          shape: BoxShape.circle,
-                        ),
-                        child: const Center(
-                          child: Text('1',
-                              style: TextStyle(
-                                  fontFamily: 'Kreon',
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 115,
-                                  color: Color(0xffFFFFFF))),
-                        ),
+      padding: const EdgeInsets.all(64),
+      child: Column(
+        children: [
+          const Text('HOW IT WORKS',
+              style: TextStyle(
+                  fontFamily: 'Kreon',
+                  fontWeight: FontWeight.bold,
+                  fontSize: 60,
+                  color: Color(0xff000000))),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(50),
+                child: Column(
+                  children: [
+                    Container(
+                      margin: EdgeInsets.all(20),
+                      height: 140,
+                      width: 140,
+                      decoration: const BoxDecoration(
+                        color: const Color(0xffEF9D13),
+                        shape: BoxShape.circle,
                       ),
-                      const Text("Bring us your ideas",
-                          style: TextStyle(
-                              fontSize: 20, color: Color(0xff000000))),
-                      Container(
-                          margin: EdgeInsets.only(top: 20),
-                          width: MediaQuery.of(context).size.width / 5,
-                          child: SelectableText(
-                            number1Text,
-                            textAlign: TextAlign.start,
-                            style: Theme.of(context)
-                                .primaryTextTheme
-                                .headline1!
-                                .copyWith(fontSize: 20),
-                          )),
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(50),
-                  child: Column(
-                    children: [
-                      Container(
-                        margin: EdgeInsets.all(20),
-                        height: 140,
-                        width: 140,
-                        decoration: const BoxDecoration(
-                          color: const Color(0xffEF9D13),
-                          shape: BoxShape.circle,
-                        ),
-                        child: const Center(
-                          child: Text('2',
-                              style: TextStyle(
-                                  fontFamily: 'Kreon',
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 115,
-                                  color: Color(0xffFFFFFF))),
-                        ),
+                      child: const Center(
+                        child: Text('1',
+                            style: TextStyle(
+                                fontFamily: 'Kreon',
+                                fontWeight: FontWeight.bold,
+                                fontSize: 115,
+                                color: Color(0xffFFFFFF))),
                       ),
-                      const Text('Collaborate',
-                          style: TextStyle(
-                              fontSize: 20, color: Color(0xff000000))),
-                      Container(
-                          margin: EdgeInsets.only(top: 20),
-                          width: MediaQuery.of(context).size.width / 5,
-                          child: SelectableText(
-                            number2Text,
-                            textAlign: TextAlign.start,
-                            style: Theme.of(context)
-                                .primaryTextTheme
-                                .headline1!
-                                .copyWith(fontSize: 20),
-                          ))
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(50),
-                  child: Column(
-                    children: [
-                      Container(
-                        margin: const EdgeInsets.all(20),
-                        height: 140,
-                        width: 140,
-                        decoration: const BoxDecoration(
-                          color: Color(0xffEF9D13),
-                          shape: BoxShape.circle,
-                        ),
-                        child: const Center(
-                          child: Text('3',
-                              style: TextStyle(
-                                  fontFamily: 'Kreon',
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 115,
-                                  color: Color(0xffFFFFFF))),
-                        ),
-                      ),
-                      const Text("Grow",
-                          style: TextStyle(
-                              fontSize: 20, color: Color(0xff000000))),
-                      Container(
-                        margin: const EdgeInsets.only(top: 20),
+                    ),
+                    const Text("Bring us your ideas",
+                        style:
+                            TextStyle(fontSize: 20, color: Color(0xff000000))),
+                    Container(
+                        margin: EdgeInsets.only(top: 20),
                         width: MediaQuery.of(context).size.width / 5,
                         child: SelectableText(
-                          number3Text,
+                          number1Text,
                           textAlign: TextAlign.start,
                           style: Theme.of(context)
                               .primaryTextTheme
                               .headline1!
                               .copyWith(fontSize: 20),
-                        ),
-                      )
-                    ],
-                  ),
-                )
-              ],
-            )
-          ],
-        ),);
+                        )),
+                  ],
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(50),
+                child: Column(
+                  children: [
+                    Container(
+                      margin: EdgeInsets.all(20),
+                      height: 140,
+                      width: 140,
+                      decoration: const BoxDecoration(
+                        color: const Color(0xffEF9D13),
+                        shape: BoxShape.circle,
+                      ),
+                      child: const Center(
+                        child: Text('2',
+                            style: TextStyle(
+                                fontFamily: 'Kreon',
+                                fontWeight: FontWeight.bold,
+                                fontSize: 115,
+                                color: Color(0xffFFFFFF))),
+                      ),
+                    ),
+                    const Text('Collaborate',
+                        style:
+                            TextStyle(fontSize: 20, color: Color(0xff000000))),
+                    Container(
+                        margin: EdgeInsets.only(top: 20),
+                        width: MediaQuery.of(context).size.width / 5,
+                        child: SelectableText(
+                          number2Text,
+                          textAlign: TextAlign.start,
+                          style: Theme.of(context)
+                              .primaryTextTheme
+                              .headline1!
+                              .copyWith(fontSize: 20),
+                        ))
+                  ],
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(50),
+                child: Column(
+                  children: [
+                    Container(
+                      margin: const EdgeInsets.all(20),
+                      height: 140,
+                      width: 140,
+                      decoration: const BoxDecoration(
+                        color: Color(0xffEF9D13),
+                        shape: BoxShape.circle,
+                      ),
+                      child: const Center(
+                        child: Text('3',
+                            style: TextStyle(
+                                fontFamily: 'Kreon',
+                                fontWeight: FontWeight.bold,
+                                fontSize: 115,
+                                color: Color(0xffFFFFFF))),
+                      ),
+                    ),
+                    const Text("Grow",
+                        style:
+                            TextStyle(fontSize: 20, color: Color(0xff000000))),
+                    Container(
+                      margin: const EdgeInsets.only(top: 20),
+                      width: MediaQuery.of(context).size.width / 5,
+                      child: SelectableText(
+                        number3Text,
+                        textAlign: TextAlign.start,
+                        style: Theme.of(context)
+                            .primaryTextTheme
+                            .headline1!
+                            .copyWith(fontSize: 20),
+                      ),
+                    )
+                  ],
+                ),
+              )
+            ],
+          )
+        ],
+      ),
+    );
   }
 }
