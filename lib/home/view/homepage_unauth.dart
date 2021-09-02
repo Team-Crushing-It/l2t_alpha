@@ -71,7 +71,7 @@ class _HeroState extends State<HeroSection> {
   @override
   Widget build(BuildContext context) {
     return Container(
-        height: 500,
+        height: MediaQuery.of(context).size.height,
         color: const Color(0xffF7F9FF),
         child: Center(
           child: Column(
@@ -243,7 +243,7 @@ class WorksSection extends StatelessWidget {
                                 color: Color(0xffFFFFFF))),
                       ),
                     ),
-                    const Text("Bring us your ideas",
+                    const Text('Meet Your Team',
                         style:
                             TextStyle(fontSize: 20, color: Color(0xff000000))),
                     Container(
