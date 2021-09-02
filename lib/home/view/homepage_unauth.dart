@@ -75,7 +75,6 @@ class _HeroState extends State<HeroSection> {
   Widget build(BuildContext context) {
     return Expanded(
       child: Container(
-          height: MediaQuery.of(context).size.height,
           color: const Color(0xffF7F9FF),
           child: Center(
             child: Column(
@@ -114,7 +113,6 @@ class IssueSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(64),
-      width: MediaQuery.of(context).size.width,
       color: Colors.white,
       child: Column(
         children: [
@@ -342,6 +340,6 @@ class WorksSection extends StatelessWidget {
               ],
             )
           ],
-        ));
+        ),);
   }
 }
