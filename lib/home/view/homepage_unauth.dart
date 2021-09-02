@@ -16,7 +16,7 @@ class _HomePageUnAuthState extends State<HomePageUnAuth> {
       appBar: NavBar(),
       body: ListView(
         children: [
-          // const HeroSection(),
+          const HeroSection(),
           const IssueSection(),
           const SolutionSection(),
           const WorksSection()
@@ -45,9 +45,6 @@ class _HeroState extends State<HeroSection> {
   Image? image6;
   @override
   void initState() {
-    // TODO: implement initState
-    super.initState();
-
     image0 = Image.asset('assets/logo/0.png');
     image1 = Image.asset('assets/logo/1.png');
     image2 = Image.asset('assets/logo/2.png');
@@ -55,11 +52,11 @@ class _HeroState extends State<HeroSection> {
     image4 = Image.asset('assets/logo/4.png');
     image5 = Image.asset('assets/logo/5.png');
     image6 = Image.asset('assets/logo/6.png');
+    super.initState();
   }
 
   @override
   void didChangeDependencies() {
-    // TODO: implement didChangeDependencies
     super.didChangeDependencies();
     precacheImage(image0!.image, context);
     precacheImage(image1!.image, context);
@@ -75,6 +72,7 @@ class _HeroState extends State<HeroSection> {
   Widget build(BuildContext context) {
     return Expanded(
       child: Container(
+          height: 500,
           color: const Color(0xffF7F9FF),
           child: Center(
             child: Column(
