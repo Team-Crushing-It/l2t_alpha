@@ -93,7 +93,7 @@ class _HeroState extends State<HeroSection> {
                           });
                         },
                         child: Image.asset('assets/logo/$rand.png'))),
-                Text('Learn how to build your vision',
+                Text('Bring your vision to life',
                     style: Theme.of(context)
                         .primaryTextTheme
                         .headline1!
