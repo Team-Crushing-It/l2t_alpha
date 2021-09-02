@@ -2,6 +2,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:l2t_alpha/navigation/navbar/navbar.dart';
 
+// ignore: use_key_in_widget_constructors
 class HomePageUnAuth extends StatefulWidget {
   static Page page() => MaterialPage<void>(child: HomePageUnAuth());
 
@@ -15,6 +16,7 @@ class _HomePageUnAuthState extends State<HomePageUnAuth> {
     return Scaffold(
       appBar: NavBar(),
       body: ListView(
+        // ignore: prefer_const_literals_to_create_immutables
         children: [
           const HeroSection(),
           const IssueSection(),
@@ -68,7 +70,7 @@ class _HeroState extends State<HeroSection> {
     precacheImage(image4!.image, context);
     precacheImage(image5!.image, context);
     precacheImage(image6!.image, context);
-    print('prechade went very well');
+
   }
 
   @override
@@ -223,6 +225,7 @@ class WorksSection extends StatelessWidget {
                     color: Color(0xff000000))),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Padding(
                   padding: const EdgeInsets.all(50),
