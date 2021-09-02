@@ -70,40 +70,37 @@ class _HeroState extends State<HeroSection> {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: Container(
-          height: 500,
-          color: const Color(0xffF7F9FF),
-          child: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              // crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Container(
-                  height: 300,
-                  width: 500,
-                  child: InkWell(
-                    onTap: () {},
-                    onHover: (v) {
-                      setState(() {
-                        rand = Random().nextInt(6);
-                      });
-                    },
-                    child: Image.asset('assets/logo/$rand.png'),
-                  ),
+    return Container(
+        height: 500,
+        color: const Color(0xffF7F9FF),
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+                height: 300,
+                width: 500,
+                child: InkWell(
+                  onTap: () {},
+                  onHover: (v) {
+                    setState(() {
+                      rand = Random().nextInt(6);
+                    });
+                  },
+                  child: Image.asset('assets/logo/$rand.png'),
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 80.0),
-                  child: Text('Bring your vision to life',
-                      style: Theme.of(context)
-                          .primaryTextTheme
-                          .headline1!
-                          .copyWith(fontSize: 50)),
-                )
-              ],
-            ),
-          )),
-    );
+              ),
+              Padding(
+                padding: const EdgeInsets.only(bottom: 80.0),
+                child: Text('Bring your vision to life',
+                    style: Theme.of(context)
+                        .primaryTextTheme
+                        .headline1!
+                        .copyWith(fontSize: 50)),
+              )
+            ],
+          ),
+        ));
   }
 }
 
@@ -111,7 +108,7 @@ class IssueSection extends StatelessWidget {
   const IssueSection({Key? key}) : super(key: key);
 
   final String theIssueText =
-      'True experts are constantly learning, and our product agency found many companies overloaded with work and not enough talent to complete it. Meanwhile, there are many early-career professionals out there with great promise and not enough experience. As we iterated upon feature-based delivery, we found our experts generating more experts, and we learned how teaching-to-learn can culture innovation.';
+      'True experts are constantly learning, and our product team found many companies overloaded with work and not enough talent to complete it. Meanwhile, there are many early-career professionals out there with great promise and not enough experience. As we iterated upon feature-based delivery, we found our experts generating more experts, and we learned how teaching-to-learn can culture innovation.';
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -345,5 +342,16 @@ class WorksSection extends StatelessWidget {
         ],
       ),
     );
+  }
+}
+
+class HeroBackupSection extends StatelessWidget {
+  const HeroBackupSection({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+        height: 400,
+        child: Image.asset('assets/logo/0.png', fit: BoxFit.fitHeight));
   }
 }
