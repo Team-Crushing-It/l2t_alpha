@@ -42,6 +42,7 @@ flutter:
     - assets/
     - assets/hoverLogo/
     - assets/logo/
+    - assets/avatar/
   fonts:
     - family: Kreon
       fonts:
