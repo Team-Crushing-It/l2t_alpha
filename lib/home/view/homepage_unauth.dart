@@ -1,7 +1,10 @@
+import 'dart:html';
 import 'dart:math';
+import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
 import 'package:l2t_alpha/navigation/navbar/navbar.dart';
 
+// ignore: use_key_in_widget_constructors
 class HomePageUnAuth extends StatefulWidget {
   static Page page() => MaterialPage<void>(child: HomePageUnAuth());
 
@@ -15,11 +18,14 @@ class _HomePageUnAuthState extends State<HomePageUnAuth> {
     return Scaffold(
       appBar: NavBar(),
       body: ListView(
+        // ignore: prefer_const_literals_to_create_immutables
         children: [
           const HeroSection(),
           const IssueSection(),
           const SolutionSection(),
-          const WorksSection()
+          const WorksSection(),
+          GoogleiFrame(),
+          const Team()
         ],
       ),
       extendBodyBehindAppBar: true,
@@ -65,7 +71,6 @@ class _HeroState extends State<HeroSection> {
     precacheImage(image4!.image, context);
     precacheImage(image5!.image, context);
     precacheImage(image6!.image, context);
-    print('prechade went very well');
   }
 
   @override
@@ -221,6 +226,7 @@ class WorksSection extends StatelessWidget {
                   color: Color(0xff000000))),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
                 padding: const EdgeInsets.all(50),
@@ -355,3 +361,124 @@ class HeroBackupSection extends StatelessWidget {
         child: Image.asset('assets/logo/0.png', fit: BoxFit.fitHeight));
   }
 }
+
+class GoogleiFrame extends StatelessWidget {
+  GoogleiFrame({Key? key}) : super(key: key);
+  final IFrameElement _iFrameElement = IFrameElement();
+  @override
+  Widget build(BuildContext context) {
+    _iFrameElement.height = '569';
+    // ignore: cascade_invocations
+    _iFrameElement.width = '960';
+    // ignore: cascade_invocations
+    _iFrameElement.src =
+        'https://docs.google.com/presentation/d/e/2PACX-1vQNxaKCaGndGsGFnW61b6LbhRWAY1DhM9DLbGsVc7zuDErNj--a6zVJoueves7vzIppHx9Cr6dh8ysT/embed?start=false&loop=false&delayms=10000';
+    // ignore: undefined_prefixed_name
+    ui.platformViewRegistry.registerViewFactory(
+      'iframeElement',
+      (int viewId) => _iFrameElement,
+    );
+    Widget _iframeWidget;
+    _iframeWidget = HtmlElementView(
+      key: UniqueKey(),
+      viewType: 'iframeElement',
+    );
+    return Container(
+      color: const Color(0xffF7F9FF),
+      height: MediaQuery.of(context).size.height,
+      width: MediaQuery.of(context).size.width,
+      child: Padding(
+        padding: const EdgeInsets.all(50),
+        child: _iframeWidget,
+      ),
+    );
+  }
+}
+
+class Team extends StatelessWidget {
+  const Team({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: MediaQuery.of(context).size.height / 2,
+      width: MediaQuery.of(context).size.width,
+      child: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(20),
+              child: const Text(
+                'OUR TEAM',
+                style: TextStyle(
+                  fontSize: 30,
+                ),
+              ),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(20),
+                  child: Column(
+                    children: [
+                      ClipOval(
+                        child: Image.asset('assets/avatar/gene.png'),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(20),
+                        child: Text(
+                          'Gene Yllanes',
+                          style:
+                              TextStyle(color: Colors.grey[700], fontSize: 20),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(20),
+                  child: Column(
+                    children: [
+                      ClipOval(
+                        child: Image.asset('assets/avatar/mahmoud.jpeg'),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(20),
+                        child: Text(
+                          'Mahmoud Garwallane',
+                          style:
+                              TextStyle(color: Colors.grey[700], fontSize: 20),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(20),
+                  child: Column(
+                    children: [
+                      ClipOval(
+                        child: Image.asset('assets/avatar/anna.png'),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(20),
+                        child: Text(
+                          'Anna Muzykina',
+                          style:
+                              TextStyle(color: Colors.grey[700], fontSize: 20),
+                        ),
+                      ),
+                    ],
+                  ),
+                )
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+ // <iframe src="https://docs.google.com/presentation/d/e/2PACX-1vQNxaKCaGndGsGFnW61b6LbhRWAY1DhM9DLbGsVc7zuDErNj--a6zVJoueves7vzIppHx9Cr6dh8ysT/embed?start=false&loop=false&delayms=10000" frameborder="0" width="960" height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
