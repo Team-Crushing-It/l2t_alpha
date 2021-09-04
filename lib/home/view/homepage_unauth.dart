@@ -51,9 +51,6 @@ class _HeroState extends State<HeroSection> {
   Image? image6;
   @override
   void initState() {
-    // TODO: implement initState
-    super.initState();
-
     image0 = Image.asset('assets/logo/0.png');
     image1 = Image.asset('assets/logo/1.png');
     image2 = Image.asset('assets/logo/2.png');
@@ -61,11 +58,11 @@ class _HeroState extends State<HeroSection> {
     image4 = Image.asset('assets/logo/4.png');
     image5 = Image.asset('assets/logo/5.png');
     image6 = Image.asset('assets/logo/6.png');
+    super.initState();
   }
 
   @override
   void didChangeDependencies() {
-    // TODO: implement didChangeDependencies
     super.didChangeDependencies();
     precacheImage(image0!.image, context);
     precacheImage(image1!.image, context);
@@ -78,35 +75,37 @@ class _HeroState extends State<HeroSection> {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: Container(
-          height: MediaQuery.of(context).size.height,
-          color: const Color(0xffF7F9FF),
-          child: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              // crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Container(
-                    height: 300,
-                    width: 500,
-                    child: InkWell(
-                        onTap: () {},
-                        onHover: (v) {
-                          setState(() {
-                            rand = Random().nextInt(6);
-                          });
-                        },
-                        child: Image.asset('assets/logo/$rand.png'))),
-                Text('Learn how to build your vision',
+    return Container(
+        height: MediaQuery.of(context).size.height,
+        color: const Color(0xffF7F9FF),
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+                height: 300,
+                width: 500,
+                child: InkWell(
+                  onTap: () {},
+                  onHover: (v) {
+                    setState(() {
+                      rand = Random().nextInt(6);
+                    });
+                  },
+                  child: Image.asset('assets/logo/$rand.png'),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(bottom: 80.0),
+                child: Text('Bring your vision to life',
                     style: Theme.of(context)
                         .primaryTextTheme
                         .headline1!
-                        .copyWith(fontSize: 50))
-              ],
-            ),
-          )),
-    );
+                        .copyWith(fontSize: 50)),
+              )
+            ],
+          ),
+        ));
   }
 }
 
@@ -114,12 +113,11 @@ class IssueSection extends StatelessWidget {
   const IssueSection({Key? key}) : super(key: key);
 
   final String theIssueText =
-      'True experts are constantly learning, and our product agency found many companies overloaded with work and not enough talent to complete it. Meanwhile, there are many early-career professionals out there with great promise and not enough experience. As we iterated upon feature-based delivery, we found our experts generating more experts, and we learned how teaching-to-learn can culture innovation.';
+      'True experts are constantly learning, and our product team found many companies overloaded with work and not enough talent to complete it. Meanwhile, there are many early-career professionals out there with great promise and not enough experience. As we iterated upon feature-based delivery, we found our experts generating more experts, and we learned how teaching-to-learn can culture innovation.';
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(64),
-      width: MediaQuery.of(context).size.width,
       color: Colors.white,
       child: Column(
         children: [
@@ -217,138 +215,149 @@ class WorksSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        padding: const EdgeInsets.all(64),
-        child: Column(
-          children: [
-            const Text('HOW IT WORKS',
-                style: TextStyle(
-                    fontFamily: 'Kreon',
-                    fontWeight: FontWeight.bold,
-                    fontSize: 60,
-                    color: Color(0xff000000))),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(50),
-                  child: Column(
-                    children: [
-                      Container(
-                        margin: EdgeInsets.all(20),
-                        height: 140,
-                        width: 140,
-                        decoration: const BoxDecoration(
-                          color: const Color(0xffEF9D13),
-                          shape: BoxShape.circle,
-                        ),
-                        child: const Center(
-                          child: Text('1',
-                              style: TextStyle(
-                                  fontFamily: 'Kreon',
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 115,
-                                  color: Color(0xffFFFFFF))),
-                        ),
+      padding: const EdgeInsets.all(64),
+      child: Column(
+        children: [
+          const Text('HOW IT WORKS',
+              style: TextStyle(
+                  fontFamily: 'Kreon',
+                  fontWeight: FontWeight.bold,
+                  fontSize: 60,
+                  color: Color(0xff000000))),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(50),
+                child: Column(
+                  children: [
+                    Container(
+                      margin: EdgeInsets.all(20),
+                      height: 140,
+                      width: 140,
+                      decoration: const BoxDecoration(
+                        color: const Color(0xffEF9D13),
+                        shape: BoxShape.circle,
                       ),
-                      const Text("Bring us your ideas",
-                          style: TextStyle(
-                              fontSize: 20, color: Color(0xff000000))),
-                      Container(
-                          margin: EdgeInsets.only(top: 20),
-                          width: MediaQuery.of(context).size.width / 5,
-                          child: SelectableText(
-                            number1Text,
-                            textAlign: TextAlign.start,
-                            style: Theme.of(context)
-                                .primaryTextTheme
-                                .headline1!
-                                .copyWith(fontSize: 20),
-                          )),
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(50),
-                  child: Column(
-                    children: [
-                      Container(
-                        margin: EdgeInsets.all(20),
-                        height: 140,
-                        width: 140,
-                        decoration: const BoxDecoration(
-                          color: const Color(0xffEF9D13),
-                          shape: BoxShape.circle,
-                        ),
-                        child: const Center(
-                          child: Text('2',
-                              style: TextStyle(
-                                  fontFamily: 'Kreon',
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 115,
-                                  color: Color(0xffFFFFFF))),
-                        ),
+                      child: const Center(
+                        child: Text('1',
+                            style: TextStyle(
+                                fontFamily: 'Kreon',
+                                fontWeight: FontWeight.bold,
+                                fontSize: 115,
+                                color: Color(0xffFFFFFF))),
                       ),
-                      const Text('Collaborate',
-                          style: TextStyle(
-                              fontSize: 20, color: Color(0xff000000))),
-                      Container(
-                          margin: EdgeInsets.only(top: 20),
-                          width: MediaQuery.of(context).size.width / 5,
-                          child: SelectableText(
-                            number2Text,
-                            textAlign: TextAlign.start,
-                            style: Theme.of(context)
-                                .primaryTextTheme
-                                .headline1!
-                                .copyWith(fontSize: 20),
-                          ))
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(50),
-                  child: Column(
-                    children: [
-                      Container(
-                        margin: const EdgeInsets.all(20),
-                        height: 140,
-                        width: 140,
-                        decoration: const BoxDecoration(
-                          color: Color(0xffEF9D13),
-                          shape: BoxShape.circle,
-                        ),
-                        child: const Center(
-                          child: Text('3',
-                              style: TextStyle(
-                                  fontFamily: 'Kreon',
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 115,
-                                  color: Color(0xffFFFFFF))),
-                        ),
-                      ),
-                      const Text("Grow",
-                          style: TextStyle(
-                              fontSize: 20, color: Color(0xff000000))),
-                      Container(
-                        margin: const EdgeInsets.only(top: 20),
+                    ),
+                    const Text('Meet Your Team',
+                        style:
+                            TextStyle(fontSize: 20, color: Color(0xff000000))),
+                    Container(
+                        margin: EdgeInsets.only(top: 20),
                         width: MediaQuery.of(context).size.width / 5,
                         child: SelectableText(
-                          number3Text,
+                          number1Text,
                           textAlign: TextAlign.start,
                           style: Theme.of(context)
                               .primaryTextTheme
                               .headline1!
                               .copyWith(fontSize: 20),
-                        ),
-                      )
-                    ],
-                  ),
-                )
-              ],
-            )
-          ],
-        ));
+                        )),
+                  ],
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(50),
+                child: Column(
+                  children: [
+                    Container(
+                      margin: EdgeInsets.all(20),
+                      height: 140,
+                      width: 140,
+                      decoration: const BoxDecoration(
+                        color: const Color(0xffEF9D13),
+                        shape: BoxShape.circle,
+                      ),
+                      child: const Center(
+                        child: Text('2',
+                            style: TextStyle(
+                                fontFamily: 'Kreon',
+                                fontWeight: FontWeight.bold,
+                                fontSize: 115,
+                                color: Color(0xffFFFFFF))),
+                      ),
+                    ),
+                    const Text('Collaborate',
+                        style:
+                            TextStyle(fontSize: 20, color: Color(0xff000000))),
+                    Container(
+                        margin: EdgeInsets.only(top: 20),
+                        width: MediaQuery.of(context).size.width / 5,
+                        child: SelectableText(
+                          number2Text,
+                          textAlign: TextAlign.start,
+                          style: Theme.of(context)
+                              .primaryTextTheme
+                              .headline1!
+                              .copyWith(fontSize: 20),
+                        ))
+                  ],
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(50),
+                child: Column(
+                  children: [
+                    Container(
+                      margin: const EdgeInsets.all(20),
+                      height: 140,
+                      width: 140,
+                      decoration: const BoxDecoration(
+                        color: Color(0xffEF9D13),
+                        shape: BoxShape.circle,
+                      ),
+                      child: const Center(
+                        child: Text('3',
+                            style: TextStyle(
+                                fontFamily: 'Kreon',
+                                fontWeight: FontWeight.bold,
+                                fontSize: 115,
+                                color: Color(0xffFFFFFF))),
+                      ),
+                    ),
+                    const Text("Grow",
+                        style:
+                            TextStyle(fontSize: 20, color: Color(0xff000000))),
+                    Container(
+                      margin: const EdgeInsets.only(top: 20),
+                      width: MediaQuery.of(context).size.width / 5,
+                      child: SelectableText(
+                        number3Text,
+                        textAlign: TextAlign.start,
+                        style: Theme.of(context)
+                            .primaryTextTheme
+                            .headline1!
+                            .copyWith(fontSize: 20),
+                      ),
+                    )
+                  ],
+                ),
+              )
+            ],
+          )
+        ],
+      ),
+    );
+  }
+}
+
+class HeroBackupSection extends StatelessWidget {
+  const HeroBackupSection({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+        height: 400,
+        child: Image.asset('assets/logo/0.png', fit: BoxFit.fitHeight));
   }
 }
 
