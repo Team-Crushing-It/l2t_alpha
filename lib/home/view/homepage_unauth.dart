@@ -226,6 +226,7 @@ class WorksSection extends StatelessWidget {
                   color: Color(0xff000000))),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
                 padding: const EdgeInsets.all(50),
