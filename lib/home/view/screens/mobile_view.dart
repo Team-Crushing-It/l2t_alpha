@@ -1,160 +1,36 @@
 import 'dart:html';
 import 'dart:math';
 import 'dart:ui' as ui;
+import 'package:l2t_alpha/navigation/navbar/navbar.dart';
 import 'package:flutter/material.dart';
 
-import 'package:l2t_alpha/navigation/navbar/navbar.dart';
-import 'package:coast/coast.dart';
-
-
-import 'package:l2t_alpha/home/view/screens/mobile_view.dart';
-import 'package:l2t_alpha/home/view/screens/desktop_view.dart';
-import 'package:responsive_builder/responsive_builder.dart';
-
 // ignore: use_key_in_widget_constructors
-class HomePageUnAuth extends StatefulWidget {
-  static Page page() => MaterialPage<void>(child: HomePageUnAuth());
+class MobileView extends StatefulWidget {
+  static Page page() => MaterialPage<void>(child: MobileView());
 
   @override
-  _HomePageUnAuthState createState() => _HomePageUnAuthState();
+  _MobileViewState createState() => _MobileViewState();
 }
 
-class _HomePageUnAuthState extends State<HomePageUnAuth> {
+class _MobileViewState extends State<MobileView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: NavBar(),
-      body: HomePage(),
-      // ListView(
-      //   // ignore: prefer_const_literals_to_create_immutables
-      //   children: [
-      //     const HeroSection(),
-      //     const IssueSection(),
-      //     const SolutionSection(),
-      //     const WorksSection(),
-      //     GoogleiFrame(),
-      //     const Team()
-      // ],
-      // ),
+      body: ListView(
+        // ignore: prefer_const_literals_to_create_immutables
+        children: [
+          const HeroSection(),
+          const IssueSection(),
+          const SolutionSection(),
+          const WorksSection(),
+          GoogleiFrame(),
+          const Team()
+        ],
+      ),
       extendBodyBehindAppBar: true,
     );
   }
-}
-
-class HomePage extends StatefulWidget {
-  @override
-  _HomePageState createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
-  final _beaches = [
-    Beach(builder: (context) => const HeroSection()),
-    Beach(builder: (context) => Hero()),
-    Beach(builder: (context) => Westkapelle()),
-    Beach(builder: (context) => Zoutelande()),
-  ];
-
-  final _coastController = CoastController(initialPage: 0);
-
-  @override
-  Widget build(BuildContext context) {
-    return Coast(
-      scrollDirection: Axis.vertical,
-      beaches: _beaches,
-      controller: _coastController,
-      observers: [
-        CrabController(),
-      ],
-    );
-  }
-}
-
-class Hero extends StatelessWidget {
-  var rand = Random().nextInt(6);
-  @override
-  Widget build(BuildContext context) => Scaffold(
-        appBar: AppBar(
-          title: Text("Cadzand"),
-          backgroundColor: Colors.deepOrange,
-        ),
-        body: Padding(
-          padding: EdgeInsets.symmetric(
-            //dynamic gutters
-            horizontal: (MediaQuery.of(context).size.width / 12 + 48),
-          ),
-          child: Stack(
-            children: [
-              Positioned.fill(
-                child: Align(
-                  alignment: Alignment.centerLeft,
-                  child: Crab(
-                    tag: 'container',
-                    child: Container(
-                      height: 100,
-                      child: InkWell(
-                        onTap: () {},
-                        child: Image.asset('assets/logo/$rand.png'),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
-      );
-}
-
-class Westkapelle extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) => Scaffold(
-        appBar: AppBar(
-          title: Text("Westkapelle"),
-          backgroundColor: Colors.amber,
-        ),
-        body: Stack(
-          children: [
-            Positioned(
-              top: 80,
-              right: 40,
-              child: Crab(
-                tag: "container",
-                child: Container(
-                  color: Colors.green,
-                  width: 200,
-                  height: 100,
-                ),
-              ),
-            ),
-          ],
-        ),
-      );
-}
-
-class Zoutelande extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) => Scaffold(
-        appBar: AppBar(
-          title: Text("Zoutelande"),
-          backgroundColor: Colors.deepPurple,
-        ),
-        body: Stack(
-          children: [
-            Positioned(
-              bottom: 40,
-              left: 20,
-              child: Crab(
-                tag: "container",
-                child: Container(
-                  color: Colors.green,
-                  width: 100,
-                  height: 200,
-                ),
-              ),
-            ),
-          ],
-        ),
-      );
 }
 
 class HeroSection extends StatefulWidget {
@@ -199,6 +75,8 @@ class _HeroState extends State<HeroSection> {
 
   @override
   Widget build(BuildContext context) {
+    double max_width = MediaQuery.of(context).size.width;
+    double max_height = MediaQuery.of(context).size.height;
     return Container(
         height: MediaQuery.of(context).size.height,
         color: const Color(0xffF7F9FF),
@@ -206,29 +84,24 @@ class _HeroState extends State<HeroSection> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Crab(
-                tag: 'container',
-                child: Container(
-                  height: 300,
-                  width: 500,
-                  child: InkWell(
-                    onTap: () {},
-                    onHover: (v) {
-                      setState(() {
-                        rand = Random().nextInt(6);
-                      });
-                    },
-                    child: Image.asset('assets/logo/$rand.png'),
-                  ),
+              Container(
+                padding: EdgeInsets.all(20),
+                child: InkWell(
+                  onTap: () {
+                    setState(() {
+                      rand = Random().nextInt(6);
+                    });
+                  },
+                  child: Image.asset('assets/logo/$rand.png'),
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(bottom: 80.0),
+                padding: const EdgeInsets.only(bottom: 5),
                 child: Text('Bring your vision to life',
                     style: Theme.of(context)
                         .primaryTextTheme
                         .headline1!
-                        .copyWith(fontSize: 50)),
+                        .copyWith(fontSize: 25)),
               )
             ],
           ),
@@ -244,7 +117,7 @@ class IssueSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(64),
+      padding: const EdgeInsets.all(20),
       color: Colors.white,
       child: Column(
         children: [
@@ -257,25 +130,25 @@ class IssueSection extends StatelessWidget {
                     style: TextStyle(
                         fontFamily: 'Kreon',
                         fontWeight: FontWeight.bold,
-                        fontSize: 32,
+                        fontSize: 10,
                         color: Color(0xff000000))),
               ),
               const Text('ISSUE',
                   style: TextStyle(
                       fontFamily: 'Kreon',
                       fontWeight: FontWeight.bold,
-                      fontSize: 82,
+                      fontSize: 30,
                       color: Color(0xff000000)))
             ],
           ),
           Container(
-            width: MediaQuery.of(context).size.width / 1.7,
+            width: MediaQuery.of(context).size.width,
             child: SelectableText(
               theIssueText,
               style: Theme.of(context)
                   .primaryTextTheme
                   .headline1!
-                  .copyWith(fontSize: 20),
+                  .copyWith(fontSize: 15),
               textAlign: TextAlign.center,
             ),
           ),
@@ -295,27 +168,26 @@ class SolutionSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       color: const Color(0xffF7F9FF),
-      padding: const EdgeInsets.all(64),
+      padding: const EdgeInsets.all(20),
       child: Column(
         children: [
-          Row(
+          Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const Text('OUR MAGIC\n SOLUTION',
                   style: TextStyle(
                       fontFamily: 'Kreon',
                       fontWeight: FontWeight.bold,
-                      fontSize: 55,
+                      fontSize: 30,
                       color: Color(0xff000000))),
               Container(
-                  padding: const EdgeInsets.only(left: 20),
-                  width: MediaQuery.of(context).size.width / 3,
+                  width: MediaQuery.of(context).size.width,
                   child: SelectableText(
                     solutionText,
                     style: Theme.of(context)
                         .primaryTextTheme
                         .headline1!
-                        .copyWith(fontSize: 20),
+                        .copyWith(fontSize: 15),
                     textAlign: TextAlign.center,
                   )),
             ],
@@ -344,23 +216,23 @@ class WorksSection extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(64),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          const Text('HOW IT WORKS',
+          const Text('HOW IT \n WORKS',
               style: TextStyle(
                   fontFamily: 'Kreon',
                   fontWeight: FontWeight.bold,
-                  fontSize: 60,
+                  fontSize: 30,
                   color: Color(0xff000000))),
-          Row(
+          Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
-                padding: const EdgeInsets.all(50),
+                padding: const EdgeInsets.all(10),
                 child: Column(
                   children: [
                     Container(
-                      margin: EdgeInsets.all(20),
                       height: 140,
                       width: 140,
                       decoration: const BoxDecoration(
@@ -381,7 +253,7 @@ class WorksSection extends StatelessWidget {
                             TextStyle(fontSize: 20, color: Color(0xff000000))),
                     Container(
                         margin: EdgeInsets.only(top: 20),
-                        width: MediaQuery.of(context).size.width / 5,
+                        width: MediaQuery.of(context).size.width,
                         child: SelectableText(
                           number1Text,
                           textAlign: TextAlign.start,
@@ -394,11 +266,10 @@ class WorksSection extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.all(50),
+                padding: const EdgeInsets.all(10),
                 child: Column(
                   children: [
                     Container(
-                      margin: EdgeInsets.all(20),
                       height: 140,
                       width: 140,
                       decoration: const BoxDecoration(
@@ -419,7 +290,7 @@ class WorksSection extends StatelessWidget {
                             TextStyle(fontSize: 20, color: Color(0xff000000))),
                     Container(
                         margin: EdgeInsets.only(top: 20),
-                        width: MediaQuery.of(context).size.width / 5,
+                        width: MediaQuery.of(context).size.width,
                         child: SelectableText(
                           number2Text,
                           textAlign: TextAlign.start,
@@ -432,11 +303,10 @@ class WorksSection extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.all(50),
+                padding: const EdgeInsets.all(20),
                 child: Column(
                   children: [
                     Container(
-                      margin: const EdgeInsets.all(20),
                       height: 140,
                       width: 140,
                       decoration: const BoxDecoration(
@@ -457,7 +327,7 @@ class WorksSection extends StatelessWidget {
                             TextStyle(fontSize: 20, color: Color(0xff000000))),
                     Container(
                       margin: const EdgeInsets.only(top: 20),
-                      width: MediaQuery.of(context).size.width / 5,
+                      width: MediaQuery.of(context).size.width,
                       child: SelectableText(
                         number3Text,
                         textAlign: TextAlign.start,
@@ -528,7 +398,7 @@ class Team extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: MediaQuery.of(context).size.height / 2,
+      height: MediaQuery.of(context).size.height / 1.7,
       width: MediaQuery.of(context).size.width,
       child: Center(
         child: Column(
@@ -543,64 +413,67 @@ class Team extends StatelessWidget {
                 ),
               ),
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(20),
-                  child: Column(
-                    children: [
-                      ClipOval(
-                        child: Image.asset('assets/avatar/gene.png'),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(20),
-                        child: Text(
-                          'Gene Yllanes',
-                          style:
-                              TextStyle(color: Colors.grey[700], fontSize: 20),
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(20),
+                    child: Column(
+                      children: [
+                        ClipOval(
+                          child: Image.asset('assets/avatar/gene.png'),
                         ),
-                      ),
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(20),
-                  child: Column(
-                    children: [
-                      ClipOval(
-                        child: Image.asset('assets/avatar/mahmoud.jpeg'),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(20),
-                        child: Text(
-                          'Mahmoud Garwallane',
-                          style:
-                              TextStyle(color: Colors.grey[700], fontSize: 20),
+                        Padding(
+                          padding: const EdgeInsets.all(20),
+                          child: Text(
+                            'Gene Yllanes',
+                            style: TextStyle(
+                                color: Colors.grey[700], fontSize: 20),
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(20),
-                  child: Column(
-                    children: [
-                      ClipOval(
-                        child: Image.asset('assets/avatar/anna.png'),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(20),
-                        child: Text(
-                          'Anna Muzykina',
-                          style:
-                              TextStyle(color: Colors.grey[700], fontSize: 20),
+                  Padding(
+                    padding: const EdgeInsets.all(20),
+                    child: Column(
+                      children: [
+                        ClipOval(
+                          child: Image.asset('assets/avatar/mahmoud.jpeg'),
                         ),
-                      ),
-                    ],
+                        Padding(
+                          padding: const EdgeInsets.all(20),
+                          child: Text(
+                            'Mahmoud Garwallane',
+                            style: TextStyle(
+                                color: Colors.grey[700], fontSize: 20),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
-                )
-              ],
+                  Padding(
+                    padding: const EdgeInsets.all(20),
+                    child: Column(
+                      children: [
+                        ClipOval(
+                          child: Image.asset('assets/avatar/anna.png'),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(20),
+                          child: Text(
+                            'Anna Muzykina',
+                            style: TextStyle(
+                                color: Colors.grey[700], fontSize: 20),
+                          ),
+                        ),
+                      ],
+                    ),
+                  )
+                ],
+              ),
             ),
           ],
         ),
@@ -608,3 +481,4 @@ class Team extends StatelessWidget {
     );
   }
 }
+ // <iframe src="https://docs.google.com/presentation/d/e/2PACX-1vQNxaKCaGndGsGFnW61b6LbhRWAY1DhM9DLbGsVc7zuDErNj--a6zVJoueves7vzIppHx9Cr6dh8ysT/embed?start=false&loop=false&delayms=10000" frameborder="0" width="960" height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
