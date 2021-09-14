@@ -3,6 +3,7 @@ import 'dart:math';
 import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
 import 'package:l2t_alpha/navigation/navbar/navbar.dart';
+import 'package:coast/coast.dart';
 
 // ignore: use_key_in_widget_constructors
 class HomePageUnAuth extends StatefulWidget {
@@ -17,20 +18,137 @@ class _HomePageUnAuthState extends State<HomePageUnAuth> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: NavBar(),
-      body: ListView(
-        // ignore: prefer_const_literals_to_create_immutables
-        children: [
-          const HeroSection(),
-          const IssueSection(),
-          const SolutionSection(),
-          const WorksSection(),
-          GoogleiFrame(),
-          const Team()
-        ],
-      ),
+      body: HomePage(),
+      // ListView(
+      //   // ignore: prefer_const_literals_to_create_immutables
+      //   children: [
+      //     const HeroSection(),
+      //     const IssueSection(),
+      //     const SolutionSection(),
+      //     const WorksSection(),
+      //     GoogleiFrame(),
+      //     const Team()
+      // ],
+      // ),
       extendBodyBehindAppBar: true,
     );
   }
+}
+
+class HomePage extends StatefulWidget {
+  @override
+  _HomePageState createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  final _beaches = [
+    Beach(builder: (context) => const HeroSection()),
+    Beach(builder: (context) => Hero()),
+    Beach(builder: (context) => Westkapelle()),
+    Beach(builder: (context) => Zoutelande()),
+  ];
+
+  final _coastController = CoastController(initialPage: 0);
+
+  @override
+  Widget build(BuildContext context) {
+    return Coast(
+      scrollDirection: Axis.vertical,
+      beaches: _beaches,
+      controller: _coastController,
+      observers: [
+        CrabController(),
+      ],
+    );
+  }
+}
+
+class Hero extends StatelessWidget {
+  var rand = Random().nextInt(6);
+  @override
+  Widget build(BuildContext context) => Scaffold(
+        appBar: AppBar(
+          title: Text("Cadzand"),
+          backgroundColor: Colors.deepOrange,
+        ),
+        body: Padding(
+          padding: EdgeInsets.symmetric(
+            //dynamic gutters
+            horizontal: (MediaQuery.of(context).size.width / 12 + 48),
+          ),
+          child: Stack(
+            children: [
+              Positioned.fill(
+                child: Align(
+                  alignment: Alignment.centerLeft,
+                  child: Crab(
+                    tag: 'container',
+                    child: Container(
+                      height: 100,
+                      child: InkWell(
+                        onTap: () {},
+                        child: Image.asset('assets/logo/$rand.png'),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      );
+}
+
+class Westkapelle extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) => Scaffold(
+        appBar: AppBar(
+          title: Text("Westkapelle"),
+          backgroundColor: Colors.amber,
+        ),
+        body: Stack(
+          children: [
+            Positioned(
+              top: 80,
+              right: 40,
+              child: Crab(
+                tag: "container",
+                child: Container(
+                  color: Colors.green,
+                  width: 200,
+                  height: 100,
+                ),
+              ),
+            ),
+          ],
+        ),
+      );
+}
+
+class Zoutelande extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) => Scaffold(
+        appBar: AppBar(
+          title: Text("Zoutelande"),
+          backgroundColor: Colors.deepPurple,
+        ),
+        body: Stack(
+          children: [
+            Positioned(
+              bottom: 40,
+              left: 20,
+              child: Crab(
+                tag: "container",
+                child: Container(
+                  color: Colors.green,
+                  width: 100,
+                  height: 200,
+                ),
+              ),
+            ),
+          ],
+        ),
+      );
 }
 
 class HeroSection extends StatefulWidget {
@@ -82,17 +200,20 @@ class _HeroState extends State<HeroSection> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Container(
-                height: 300,
-                width: 500,
-                child: InkWell(
-                  onTap: () {},
-                  onHover: (v) {
-                    setState(() {
-                      rand = Random().nextInt(6);
-                    });
-                  },
-                  child: Image.asset('assets/logo/$rand.png'),
+              Crab(
+                tag: 'container',
+                child: Container(
+                  height: 300,
+                  width: 500,
+                  child: InkWell(
+                    onTap: () {},
+                    onHover: (v) {
+                      setState(() {
+                        rand = Random().nextInt(6);
+                      });
+                    },
+                    child: Image.asset('assets/logo/$rand.png'),
+                  ),
                 ),
               ),
               Padding(
