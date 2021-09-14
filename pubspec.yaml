@@ -24,6 +24,7 @@ dependencies:
     git: https://github.com/Gene-Dana/dart-github-sign-in.git
   flutter_signin_button: ^2.0.0
   google_fonts: ^2.1.0
+  coast: ^2.0.2
 
   authentication_repository:
     path: packages/authentication_repository
