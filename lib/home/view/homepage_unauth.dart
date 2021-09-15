@@ -1,15 +1,13 @@
 import 'dart:html';
 import 'dart:math';
 import 'dart:ui' as ui;
-import 'package:flutter/material.dart';
 
-import 'package:l2t_alpha/navigation/navbar/navbar.dart';
 import 'package:coast/coast.dart';
+import 'package:flutter/gestures.dart';
+import 'package:flutter/material.dart';
+import 'package:l2t_alpha/navigation/navbar/navbar.dart';
 
-
-import 'package:l2t_alpha/home/view/screens/mobile_view.dart';
-import 'package:l2t_alpha/home/view/screens/desktop_view.dart';
-import 'package:responsive_builder/responsive_builder.dart';
+import './screen_size.dart';
 
 // ignore: use_key_in_widget_constructors
 class HomePageUnAuth extends StatefulWidget {
@@ -20,84 +18,138 @@ class HomePageUnAuth extends StatefulWidget {
 }
 
 class _HomePageUnAuthState extends State<HomePageUnAuth> {
+  final _beaches = [
+    Beach(builder: (context) => const HeroSection()),
+    Beach(builder: (context) => ServeSection()),
+    Beach(builder: (context) => Hero2()),
+    Beach(builder: (context) => Westkapelle()),
+    Beach(builder: (context) => Zoutelande()),
+  ];
+
+  final _coastController = CoastController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: NavBar(),
-      body: HomePage(),
-      // ListView(
-      //   // ignore: prefer_const_literals_to_create_immutables
-      //   children: [
-      //     const HeroSection(),
-      //     const IssueSection(),
-      //     const SolutionSection(),
-      //     const WorksSection(),
-      //     GoogleiFrame(),
-      //     const Team()
-      // ],
-      // ),
+      body: Coast(
+        onPageChanged: (int) {
+          print('changed to $int');
+        },
+        allowImplicitScrolling: true,
+        scrollDirection: Axis.vertical,
+        beaches: _beaches,
+        controller: _coastController,
+        observers: [
+          CrabController(),
+        ],
+      ),
       extendBodyBehindAppBar: true,
     );
   }
 }
 
-class HomePage extends StatefulWidget {
-  @override
-  _HomePageState createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
-  final _beaches = [
-    Beach(builder: (context) => const HeroSection()),
-    Beach(builder: (context) => Hero()),
-    Beach(builder: (context) => Westkapelle()),
-    Beach(builder: (context) => Zoutelande()),
-  ];
-
-  final _coastController = CoastController(initialPage: 0);
-
-  @override
-  Widget build(BuildContext context) {
-    return Coast(
-      scrollDirection: Axis.vertical,
-      beaches: _beaches,
-      controller: _coastController,
-      observers: [
-        CrabController(),
-      ],
-    );
-  }
-}
-
-class Hero extends StatelessWidget {
-  var rand = Random().nextInt(6);
-  @override
-  Widget build(BuildContext context) => Scaffold(
-        appBar: AppBar(
-          title: Text("Cadzand"),
-          backgroundColor: Colors.deepOrange,
+///This is for transitions between crabs
+Widget textFlightShuttleBuilder(
+  BuildContext flightContext,
+  Animation<double> animation,
+  BeachTransitionDirection direction,
+  BuildContext fromCrabContext,
+  BuildContext? toCrabContext,
+) {
+  final curvedAnimation =
+      CurvedAnimation(parent: animation, curve: Curves.easeInOutQuart);
+  return Stack(
+    clipBehavior: Clip.none,
+    children: [
+      Positioned(
+        top: 0,
+        left: 0,
+        child: FadeTransition(
+          opacity: Tween<double>(begin: 1.0, end: 0.0).animate(curvedAnimation),
+          child: (fromCrabContext.widget as Crab).child,
         ),
-        body: Padding(
+      ),
+      if (toCrabContext != null)
+        Positioned(
+          top: 0,
+          left: 0,
+          child: FadeTransition(
+            opacity: curvedAnimation,
+            child: (toCrabContext.widget as Crab).child,
+          ),
+        ),
+    ],
+  );
+}
+
+class ServeSection extends StatelessWidget {
+  const ServeSection({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) => Container(
+        color: const Color(0xffF7F9FF),
+        child: Padding(
           padding: EdgeInsets.symmetric(
             //dynamic gutters
             horizontal: (MediaQuery.of(context).size.width / 12 + 48),
           ),
-          child: Stack(
+          child: Row(
             children: [
-              Positioned.fill(
-                child: Align(
-                  alignment: Alignment.centerLeft,
-                  child: Crab(
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Crab(
+                    flightShuttleBuilder: textFlightShuttleBuilder,
                     tag: 'container',
                     child: Container(
                       height: 100,
-                      child: InkWell(
-                        onTap: () {},
-                        child: Image.asset('assets/logo/$rand.png'),
-                      ),
+                      child: Image.asset('assets/logo/1.png'),
                     ),
                   ),
-                ),
+                  Padding(
+                    padding: const EdgeInsets.all(24),
+                    child: Text('Serve',
+                        style: Theme.of(context)
+                            .primaryTextTheme
+                            .headline1!
+                            .copyWith(fontSize: 50)),
+                  )
+                ],
+              ),
+              Crab(
+                  tag: 'line',
+                  child: Image.asset('assets/homepage_lines/1.png')),
+            ],
+          ),
+        ),
+      );
+}
+
+class Hero2 extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) => Container(
+        color: Colors.white,
+        child: Padding(
+          padding: EdgeInsets.symmetric(
+            //dynamic gutters
+            horizontal: (MediaQuery.of(context).size.width / 12 + 48),
+          ),
+          child: Row(
+            children: [
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Crab(
+                    flightShuttleBuilder: textFlightShuttleBuilder,
+                    tag: 'container',
+                    child: Container(
+                      height: 100,
+                      child: Image.asset('assets/logo/2.png'),
+                    ),
+                  ),
+                  Text('Test')
+                ],
               ),
             ],
           ),
@@ -478,38 +530,48 @@ class WorksSection extends StatelessWidget {
   }
 }
 
-class HeroBackupSection extends StatelessWidget {
-  const HeroBackupSection({Key? key}) : super(key: key);
+class GoogleiFrame extends StatefulWidget {
+  GoogleiFrame({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    return Container(
-        height: 400,
-        child: Image.asset('assets/logo/0.png', fit: BoxFit.fitHeight));
-  }
+  State<GoogleiFrame> createState() => _GoogleiFrameState();
 }
 
-class GoogleiFrame extends StatelessWidget {
-  GoogleiFrame({Key? key}) : super(key: key);
-  final IFrameElement _iFrameElement = IFrameElement();
+class _GoogleiFrameState extends State<GoogleiFrame> {
+  late Widget _iframeWidget;
+
+  final IFrameElement _iframeElement = IFrameElement();
+  final _screenQueries = ScreenQueries.instance;
+
   @override
-  Widget build(BuildContext context) {
-    _iFrameElement.height = '569';
-    // ignore: cascade_invocations
-    _iFrameElement.width = '960';
-    // ignore: cascade_invocations
-    _iFrameElement.src =
-        'https://docs.google.com/presentation/d/e/2PACX-1vQNxaKCaGndGsGFnW61b6LbhRWAY1DhM9DLbGsVc7zuDErNj--a6zVJoueves7vzIppHx9Cr6dh8ysT/embed?start=false&loop=false&delayms=10000';
+  void initState() {
+    super.initState();
+
+    _iframeElement.height = '500';
+    _iframeElement.width = '500';
+
+    _iframeElement.src =
+        "https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2F02VhBYm6D0Kn1YT0IRouMg%2FUntitled%3Fpage-id%3D0%253A1%26node-id%3D2%253A3%26viewport%3D241%252C48%252C0.23%26scaling%3Dcontain%26starting-point-node-id%3D2%253A3";
+
+    _iframeElement.style.border = 'none';
+
     // ignore: undefined_prefixed_name
     ui.platformViewRegistry.registerViewFactory(
       'iframeElement',
-      (int viewId) => _iFrameElement,
+      (int viewId) => _iframeElement,
     );
-    Widget _iframeWidget;
+
     _iframeWidget = HtmlElementView(
       key: UniqueKey(),
       viewType: 'iframeElement',
     );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final _width = _screenQueries.customWidthPercent(context, 0.75);
+    final _height = _screenQueries.customHeightPercent(context, 0.75);
+
     return Container(
       color: const Color(0xffF7F9FF),
       height: MediaQuery.of(context).size.height,
